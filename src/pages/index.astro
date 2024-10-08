@@ -1,15 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+// import { getEmployeeName } from '../db';
+
+// const employeeName = await getEmployeeName();
+
+const employeeName = "Juan Pérez"; // Puedes cambiar esto dinámicamente usando el código comentado arriba
 ---
 
 <Layout title="Welcome to Astro.">
-
- <div class="min-h-screen bg-gradient-to-r from-blue-500 to-indigo-300 text-white flex flex-col items-center justify-center">
-	<div class="bg-white bg-opacity-10 backdrop-blur-md p-8 rounded-lg shadow-lg text-center max-w-lg mx-auto">
-	  <h1 class="text-4xl font-bold mb-4">Welcome to Tango Jet</h1>
-	  <p class="text-lg text-gray-200">Esto es solo para completar la Home</p>
-	</div>
+  <div class="min-h-screen flex flex-col items-center justify-center">
+    <div class="bg-white bg-opacity-10 backdrop-blur-md p-8 rounded-lg shadow-lg text-center max-w-lg mx-auto">
+      <h1 class="text-4xl font-bold mb-4">Bienvenido a Tango Jet, {employeeName}</h1>
+      <p class="text-lg text-gray-200">Esto es solo para completar la Home</p>
+    </div>
   </div>
-  
 </Layout>
