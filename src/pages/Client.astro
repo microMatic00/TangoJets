@@ -1,8 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { getClients } from "../../lib/database"; // Asegúrate de tener una función para obtener los clientes
-
+import ModalAdd from "../components/modalAdd.astro";
 const clients = await getClients();
+import Prueba from "../components/prueba.astro";
 
 // Extender la interfaz Window para incluir las funciones globales
 declare global {
@@ -32,6 +33,7 @@ if (typeof window !== 'undefined') {
 
 <Layout title="Clients"> 
   <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <ModalAdd />
     <div class="flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-between pb-4">
       <!-- Tu código existente para el dropdown y el buscador -->
     </div>
