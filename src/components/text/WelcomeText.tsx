@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react"
+import { getCookie } from "../../utils/getCookie"
 
 export const WelcomeText = () => {
 	const [employeeName, setEmployeeName] = useState("")
 
 	useEffect(() => {
-		const name = localStorage.getItem("authToken")
+		const name = getCookie("username")
 		if (name) {
 			setEmployeeName(name)
 		}
