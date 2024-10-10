@@ -1,10 +1,11 @@
 import { useState } from "react"
+import { loginScheduler } from "../../../lib/actions/login/actions"
 
 export const LoginCard = () => {
 	const [showPassword, setShowPassword] = useState(false)
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
-    const [handleErrors, setHandleErrors] = useState({
+	const [handleErrors, setHandleErrors] = useState({
 		emailError: {
 			status: false,
 			message: "",
@@ -15,13 +16,16 @@ export const LoginCard = () => {
 		},
 	})
 
-	const handleLogin = () => {
+	const handleLogin = async () => {
 		if (email && password) {
 			setHandleErrors({
 				emailError: { status: false, message: "" },
 				passwordError: { status: false, message: "" },
 			})
-			// login logic
+
+			const login = await loginScheduler({ username: email, password })
+			if (login?.status === 200) window.location.href = "/"
+			else console.log("error logging in")
 		} else if (!password && !email) {
 			setHandleErrors({
 				emailError: { status: true, message: "email does not exist" },
