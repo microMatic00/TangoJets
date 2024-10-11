@@ -1,3 +1,5 @@
+import { setCookie } from "../../../src/utils/setCookie"
+
 interface Login {
 	username: string
 	password: string

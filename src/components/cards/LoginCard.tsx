@@ -24,7 +24,8 @@ export const LoginCard = () => {
 			})
 
 			const login = await loginScheduler({ username: email, password })
-			if (login?.status === 200) window.location.href = "/"
+
+			if (login?.success) window.location.href = "/Home"
 			else console.log("error logging in")
 		} else if (!password && !email) {
 			setHandleErrors({
