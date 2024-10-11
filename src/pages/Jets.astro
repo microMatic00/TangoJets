@@ -1,0 +1,36 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getJets } from "../../lib/database";
+import ModalAddJet from "../components/modalAddJet.astro";
+import TableModal from "../components/table/TableModal.astro";
+
+const jets = await getJets();
+
+/*Los Heavy Jets son las aeronaves más grandes y espaciosas
+    capacidad para transportar de 10 a 16 pasajeros y 
+    alcance de vuelo de alrededor de 4,000 a 7,000 millas. 
+*/
+
+
+// Definir los encabezados con claves que coincidan con las propiedades de los objetos 'jets'
+const headers = [
+  { label: "name", key: "name" },
+  { label: "capacity", key: "capacity" },
+  { label: "flightrange", key: "flightrange" },  
+  { label: "speed", key: "speed" },
+  { label: "price", key: "price" },
+//   { label: "image", key: "image" },
+];
+---
+
+<Layout title="Jets">
+  <div class="flex flex-col space-y-4">
+    <div>
+      <ModalAddJet />
+    </div>
+    <div>
+      <TableModal headers={headers} rows={jets} />
+    </div>
+  </div>
+  </Layout>
+</Layout>
