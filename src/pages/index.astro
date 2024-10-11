@@ -1,17 +1,14 @@
 ---
-import { WelcomeText } from "../components/text/WelcomeText"
-import Layout from "../layouts/Layout.astro"
+import { LoginCard } from "../components/cards/LoginCard"
+import LoginLayout from "../layouts/LoginLayout.astro"
 ---
 
-<Layout title="Welcome to Astro.">
+<LoginLayout title="Login">
 	<div class="min-h-screen flex flex-col items-center justify-center">
 		<div
-			class="bg-white bg-opacity-10 backdrop-blur-md p-8 rounded-lg shadow-lg text-center max-w-lg mx-auto"
+			class="bg-white bg-opacity-10 backdrop-blur-md p-8 rounded-lg w-[400px] shadow-lg text-center mx-auto"
 		>
-			<WelcomeText client:load />
-			<p class="text-lg text-gray-200">
-				Esto es solo para completar la Home
-			</p>
+			<LoginCard client:load />
 		</div>
 	</div>
-</Layout>
+</LoginLayout>
