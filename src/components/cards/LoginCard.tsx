@@ -1,67 +1,68 @@
 import { useState } from "react"
 import { loginScheduler } from "../../../lib/actions/login/actions"
+import { Bounce, toast } from "react-toastify"
 
 export const LoginCard = () => {
 	const [showPassword, setShowPassword] = useState(false)
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
-	const [handleErrors, setHandleErrors] = useState({
-		emailError: {
-			status: false,
-			message: "",
-		},
-		passwordError: {
-			status: false,
-			message: "",
-		},
-	})
 
-	const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
-		event.preventDefault()
+	const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault()
 		if (email && password) {
-			setHandleErrors({
-				emailError: { status: false, message: "" },
-				passwordError: { status: false, message: "" },
-			})
-
-			const login = await loginScheduler({ username: email, password })
-
-			if (login?.success) {
-				setEmail("")
-				setPassword("")
-				window.location.href = "/Home"
-			} else
-				setHandleErrors({
-					passwordError: { status: false, message: "" },
-					emailError: { status: true, message: login.message },
+			try {
+				const login = await loginScheduler({
+					username: email,
+					password,
 				})
-		} else if (!password && !email) {
-			setHandleErrors({
-				emailError: { status: true, message: "email does not exist" },
-				passwordError: {
-					status: true,
-					message: "password does not exist",
-				},
-			})
-		} else if (!password) {
-			setHandleErrors({
-				emailError: { status: false, message: "" },
-				passwordError: {
-					status: true,
-					message: "password does not exist",
-				},
-			})
-		} else if (!email) {
-			setHandleErrors({
-				passwordError: { status: false, message: "" },
-				emailError: { status: true, message: "email does not exist" },
+
+				if (login?.success) {
+					window.location.href = "/Home"
+				} else {
+					toast.error(login.message, {
+						position: "top-center",
+						autoClose: 5000,
+						hideProgressBar: false,
+						closeOnClick: true,
+						pauseOnHover: true,
+						draggable: true,
+						progress: undefined,
+						theme: "dark",
+						transition: Bounce,
+					})
+				}
+			} catch (error) {
+				console.error("Login error:", error)
+				toast.error("An error occurred during login.", {
+					position: "top-center",
+					autoClose: 5000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: "dark",
+					transition: Bounce,
+				})
+			}
+		} else {
+			toast.error("Please fill in both fields", {
+				position: "top-center",
+				autoClose: 5000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+				theme: "dark",
+				transition: Bounce,
 			})
 		}
 	}
 	return (
 		<div className="flex flex-col w-full items-center">
 			<h1 className="text-4xl font-bold mb-6">Welcome!</h1>
-			<form onSubmit={handleLogin} className="w-full">
+			<form onSubmit={(e) => handleLogin(e)} className="w-full">
 				<div className="flex flex-col gap-4 w-full">
 					<div className="flex flex-col items-start w-full">
 						<input
@@ -71,11 +72,6 @@ export const LoginCard = () => {
 							value={email}
 							onChange={(e) => setEmail(e.target.value)}
 						/>
-						{handleErrors.emailError.status && (
-							<p className="ml-2 text-red-500 font-bold">
-								{handleErrors.emailError.message}
-							</p>
-						)}
 					</div>
 					<div className="flex flex-col items-start">
 						<div className="flex w-full">
@@ -132,19 +128,14 @@ export const LoginCard = () => {
 								)}
 							</button>
 						</div>
-						{handleErrors.passwordError.status && (
-							<span className="ml-2 text-red-500 font-bold">
-								{handleErrors.passwordError.message}
-							</span>
-						)}
 					</div>
+					<button
+						type="submit"
+						className="mt-6 border-2 border-gray-200 border-solid w-fit rounded-full px-4 py-2"
+					>
+						Login
+					</button>
 				</div>
-				<button
-					type="submit"
-					className="mt-6 border-2 border-gray-200 border-solid w-fit rounded-full px-4 py-2"
-				>
-					Login
-				</button>
 			</form>
 		</div>
 	)

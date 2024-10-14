@@ -1,6 +1,8 @@
 ---
 import { LoginCard } from "../components/cards/LoginCard"
 import LoginLayout from "../layouts/LoginLayout.astro"
+import { ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 ---
 
 <LoginLayout title="Login">
@@ -8,6 +10,7 @@ import LoginLayout from "../layouts/LoginLayout.astro"
 		<div
 			class="bg-white bg-opacity-10 backdrop-blur-md p-8 rounded-lg w-[400px] shadow-lg text-center mx-auto"
 		>
+			<ToastContainer client:load />
 			<LoginCard client:load />
 		</div>
 	</div>
