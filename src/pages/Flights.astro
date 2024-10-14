@@ -1,0 +1,27 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getFlights } from "../../lib/database";
+
+import TableModal from "../components/table/TableModal.astro";
+
+const flight = await getFlights();
+
+// Definir los encabezados con claves que coincidan con las propiedades de los objetos 'Flight'
+const headers = [
+  { label: "launchtime", key: "launchtime" },
+  { label: "arrivaltime", key: "arrivaltime" },
+  { label: "to", key: "to" },  
+  { label: "airship", key: "airship" },
+  { label: "createdby", key: "createdby" },
+
+];
+---
+
+<Layout title="Flights">
+  <div class="flex flex-col space-y-4">
+    <div>
+      <TableModal headers={headers} rows={flight} />
+    </div>
+  </div>
+  </Layout>
+</Layout>
