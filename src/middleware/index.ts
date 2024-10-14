@@ -1,7 +1,6 @@
 import type { APIContext } from "astro"
 import { defineMiddleware } from "astro:middleware"
 
-// Function to parse cookies from the request header
 function parseCookies(cookieHeader: string) {
 	if (!cookieHeader) return {}
 
