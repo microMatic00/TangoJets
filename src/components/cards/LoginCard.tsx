@@ -9,6 +9,7 @@ export const LoginCard = () => {
 
 	const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
+
 		if (email && password) {
 			try {
 				const login = await loginScheduler({
@@ -62,12 +63,11 @@ export const LoginCard = () => {
 	return (
 		<div className="flex flex-col w-full items-center">
 			<h1 className="text-4xl font-bold mb-6">Welcome!</h1>
-			<form onSubmit={(e) => handleLogin(e)} className="w-full">
+			<form onSubmit={handleLogin} className="w-full">
 				<div className="flex flex-col gap-4 w-full">
 					<div className="flex flex-col items-start w-full">
 						<input
 							className="w-full rounded-full px-4 py-2 text-black"
-							type="email"
 							placeholder="Enter Email"
 							value={email}
 							onChange={(e) => setEmail(e.target.value)}
@@ -129,13 +129,13 @@ export const LoginCard = () => {
 							</button>
 						</div>
 					</div>
-					<button
-						type="submit"
-						className="mt-6 border-2 border-gray-200 border-solid w-fit rounded-full px-4 py-2"
-					>
-						Login
-					</button>
 				</div>
+				<button
+					type="submit"
+					className="mt-6 border-2 border-gray-200 border-solid w-fit rounded-full px-4 py-2"
+				>
+					Login
+				</button>
 			</form>
 		</div>
 	)
