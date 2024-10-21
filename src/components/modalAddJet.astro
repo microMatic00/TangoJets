@@ -1,6 +1,5 @@
 ---
 
-
 ---
 
 <button
@@ -22,7 +21,9 @@
 		<!-- Modal content -->
 		<div class="relative bg-white rounded-lg shadow dark:bg-gray-800">
 			<!-- Modal header -->
-			<div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+			<div
+				class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600"
+			>
 				<h3 class="text-xl font-semibold text-gray-900 dark:text-white">
 					Add New Jet
 				</h3>
@@ -51,7 +52,10 @@
 					<div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
 						<!-- Jet Name -->
 						<div>
-							<label for="jetName" class="block text-sm font-medium text-gray-900 dark:text-gray-200" >
+							<label
+								for="jetName"
+								class="block text-sm font-medium text-gray-900 dark:text-gray-200"
+							>
 								Jet Name
 							</label>
 							<input
@@ -65,7 +69,10 @@
 
 						<!-- Capacity -->
 						<div>
-							<label for="capacity" class="block text-sm font-medium text-gray-900 dark:text-gray-200">
+							<label
+								for="capacity"
+								class="block text-sm font-medium text-gray-900 dark:text-gray-200"
+							>
 								Capacity
 							</label>
 							<input
@@ -79,7 +86,10 @@
 
 						<!-- Flight Range -->
 						<div>
-							<label for="flightRange" class="block text-sm font-medium text-gray-900 dark:text-gray-200">
+							<label
+								for="flightRange"
+								class="block text-sm font-medium text-gray-900 dark:text-gray-200"
+							>
 								Flight Range (km)
 							</label>
 							<input
@@ -93,7 +103,10 @@
 
 						<!-- Speed -->
 						<div>
-							<label for="speed" class="block text-sm font-medium text-gray-900 dark:text-gray-200">
+							<label
+								for="speed"
+								class="block text-sm font-medium text-gray-900 dark:text-gray-200"
+							>
 								Speed (km/h)
 							</label>
 							<input
@@ -107,7 +120,10 @@
 
 						<!-- Price -->
 						<div>
-							<label for="price" class="block text-sm font-medium text-gray-900 dark:text-gray-200">
+							<label
+								for="price"
+								class="block text-sm font-medium text-gray-900 dark:text-gray-200"
+							>
 								Price (USD)
 							</label>
 							<input
@@ -118,15 +134,38 @@
 								required
 							/>
 						</div>
+
+						<!-- Size -->
+						<div>
+							<label
+								for="size"
+								class="block text-sm font-medium text-gray-900 dark:text-gray-200"
+							>
+								Size
+							</label>
+							<input
+								type="text"
+								id="size"
+								name="size"
+								class="block w-full px-4 py-2 mt-1 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+								required
+							/>
+						</div>
 					</div>
 				</form>
 				<!-- Success message -->
-				<div id="successMessage" class="hidden p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
+				<div
+					id="successMessage"
+					class="hidden p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
+					role="alert"
+				>
 					Jet successfully added!
 				</div>
 			</div>
 			<!-- Modal footer -->
-			<div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+			<div
+				class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600"
+			>
 				<button
 					id="submitJet"
 					type="submit"
@@ -169,7 +208,9 @@
 		$submitJet.addEventListener("click", (event) => {
 			event.preventDefault()
 
-			const formElement = document.querySelector("#addJetForm") as HTMLFormElement | null
+			const formElement = document.querySelector(
+				"#addJetForm"
+			) as HTMLFormElement | null
 			if (formElement) {
 				const formData = new FormData(formElement)
 				const entries = Object.fromEntries(formData.entries())
