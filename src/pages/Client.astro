@@ -1,12 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { getClients } from "../../lib/database";
 import ModalAdd from "../components/modalAdd.astro";
-
 import TableModal from "../components/table/TableModal.astro";
 
-const clients = await getClients();
-
+const response = await fetch('http://localhost:3001/clients');
+const clients = await response.json();
+const deleteUrl = 'http://localhost:3001/client';
 
 // Definir los encabezados con claves que coincidan con las propiedades de los objetos 'clients'
 const headers = [
