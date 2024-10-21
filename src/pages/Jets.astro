@@ -1,31 +1,30 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import { getJets } from "../../lib/database";
-import ModalAddJet from "../components/modalAddJet.astro";
-import TableModal from "../components/table/TableModal.astro";
+import Layout from "../layouts/Layout.astro"
+import { getJets } from "../../lib/database"
+import ModalAddJet from "../components/modalAddJet.astro"
+import TableModal from "../components/table/TableModal.astro"
 
-const jets = await getJets();
-
+const jets = await getJets()
 
 // Definir los encabezados con claves que coincidan con las propiedades de los objetos 'jets'
 const headers = [
-  { label: "name", key: "name" },
-  { label: "capacity", key: "capacity" },
-  { label: "flightrange", key: "flightrange" },  
-  { label: "speed", key: "speed" },
-  { label: "price", key: "price" },
-//   { label: "image", key: "image" },
-];
+	{ label: "name", key: "name" },
+	{ label: "capacity", key: "capacity" },
+	{ label: "flightrange", key: "flightrange" },
+	{ label: "speed", key: "speed" },
+	{ label: "price", key: "price" },
+	{ label: "size", key: "size" },
+	//   { label: "image", key: "image" },
+]
 ---
 
 <Layout title="Jets">
-  <div class="flex flex-col space-y-4">
-    <div>
-      <ModalAddJet />
-    </div>
-    <div>
-      <TableModal headers={headers} rows={jets} />
-    </div>
-  </div>
-  </Layout>
+	<div class="flex flex-col space-y-4">
+		<div>
+			<ModalAddJet />
+		</div>
+		<div>
+			<TableModal headers={headers} rows={jets} />
+		</div>
+	</div>
 </Layout>
