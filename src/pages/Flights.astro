@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 
 import TableModal from "../components/table/TableModal.astro";
 
-
+const deleteUrl = 'http://localhost:3001/flight';
 const response = await fetch('http://localhost:3001/flights');
 const flight = await response.json();
 
@@ -21,7 +21,7 @@ const headers = [
 <Layout title="Flights">
   <div class="flex flex-col space-y-4">
     <div>
-      <TableModal headers={headers} rows={flight} />
+      <TableModal headers={headers} rows={flight} url{deleteUrl} />
     </div>
   </div>
   </Layout>
