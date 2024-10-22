@@ -1,12 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro"
 import ModalAddJet from "../components/modalAddJet.astro"
-import TableModal from "../components/table/TableModal.astro"
+import TableModal from "../components/table/TableModal"
 
-const response = await fetch('http://localhost:3001/airships');
-const airships = await response.json();
-const deleteUrl = 'http://localhost:3001/airship';
-const who = 'airship';
+const response = await fetch("http://localhost:3001/airships")
+const airships = await response.json()
+const deleteUrl = "http://localhost:3001/airship"
+const who = "airship"
 // Definir los encabezados con claves que coincidan con las propiedades de los objetos 'jets'
 const headers = [
 	{ label: "Name", key: "title" },
@@ -24,7 +24,12 @@ const headers = [
 			<ModalAddJet />
 		</div>
 		<div>
-			<TableModal headers={headers} rows={airships} url={deleteUrl} who={who}/>
+			<TableModal
+				headers={headers}
+				rows={airships}
+				url={deleteUrl}
+				who={who}
+			/>
 		</div>
 	</div>
 </Layout>
