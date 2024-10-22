@@ -1,30 +1,29 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import ModalAdd from "../components/modalAdd.astro";
-import TableModal from "../components/table/TableModal.astro";
+import Layout from "../layouts/Layout.astro"
+import ModalAdd from "../components/modalAdd.astro"
+import TableModal from "../components/table/TableModal"
 
-const response = await fetch('http://localhost:3001/clients');
-const clients = await response.json();
-const deleteUrl = 'http://localhost:3001/client';
-const who = 'client';
+const response = await fetch("http://localhost:3001/clients")
+const clients = await response.json()
+const deleteUrl = "http://localhost:3001/client"
+
 // Definir los encabezados con claves que coincidan con las propiedades de los objetos 'clients'
 const headers = [
-  { label: "First Name", key: "firstname" },
-  { label: "Last Name", key: "lastname" },
-  { label: "Phone", key: "phonenumber" },
-  { label: "Email", key: "email" },
-  { label: "ID/Passport", key: "identification" }
-];
+	{ label: "First Name", key: "firstname" },
+	{ label: "Last Name", key: "lastname" },
+	{ label: "Phone", key: "phonenumber" },
+	{ label: "Email", key: "email" },
+	{ label: "ID/Passport", key: "identification" },
+]
 ---
 
 <Layout title="Clients">
-
-<div class="flex flex-col space-y-4">
-  <div>
-    <ModalAdd />
-  </div>
-  <div>
-    <TableModal headers={headers} rows={clients} url={deleteUrl} who={who}/>
-  </div>
-</div>
+	<div class="flex flex-col space-y-4">
+		<div>
+			<ModalAdd />
+		</div>
+		<div>
+			<TableModal headers={headers} rows={clients} url={deleteUrl} />
+		</div>
+	</div>
 </Layout>
