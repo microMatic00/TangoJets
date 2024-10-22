@@ -6,7 +6,7 @@ import TableModal from "../components/table/TableModal.astro";
 const response = await fetch('http://localhost:3001/clients');
 const clients = await response.json();
 const deleteUrl = 'http://localhost:3001/client';
-
+const who = 'client';
 // Definir los encabezados con claves que coincidan con las propiedades de los objetos 'clients'
 const headers = [
   { label: "First Name", key: "firstname" },
@@ -24,7 +24,7 @@ const headers = [
     <ModalAdd />
   </div>
   <div>
-    <TableModal headers={headers} rows={clients} url={deleteUrl}/>
+    <TableModal headers={headers} rows={clients} url={deleteUrl} who={who}/>
   </div>
 </div>
 </Layout>
