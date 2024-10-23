@@ -1,29 +1,24 @@
 ---
 import Layout from "../layouts/Layout.astro"
-import ModalAdd from "../components/modalAdd.astro"
+import ModalAdd from "../components/modalAdd"
 import TableModal from "../components/table/TableModal"
+import { getClients } from "../../lib/actions/clients/actions"
 
-const response = await fetch("http://localhost:3001/clients")
-const clients = await response.json()
 const deleteUrl = "http://localhost:3001/client"
+const data = await getClients()
+
 
 // Definir los encabezados con claves que coincidan con las propiedades de los objetos 'clients'
-const headers = [
-	{ label: "First Name", key: "firstname" },
-	{ label: "Last Name", key: "lastname" },
-	{ label: "Phone", key: "phonenumber" },
-	{ label: "Email", key: "email" },
-	{ label: "ID/Passport", key: "identification" },
-]
+
 ---
 
 <Layout title="Clients">
 	<div class="flex flex-col space-y-4">
 		<div>
-			<ModalAdd />
+			<ModalAdd client:load />
 		</div>
 		<div>
-			<TableModal headers={headers} rows={clients} url={deleteUrl} />
+			<TableModal info={data} url={deleteUrl} client:load />
 		</div>
 	</div>
 </Layout>
