@@ -2,8 +2,12 @@ import React, { useState } from 'react';
 import 'react-phone-input-2/lib/style.css';
 import { addClient } from '../../lib/actions/clients/actions';
 
+import { Toast } from "flowbite-react";
+import { HiCheck } from "react-icons/hi";
+
 const AddClientModal: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showToast, setShowToast] = useState(false);
 
   const handleToggleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -15,21 +19,21 @@ const AddClientModal: React.FC = () => {
     const formData = new FormData(formElement);
     const clientData = Object.fromEntries(formData.entries());
 
-    //chat sugerencia
-    // Transformar los nombres de las propiedades
-  const transformedClientData = {
-    firstname: clientData.firstName,
-    lastname: clientData.lastName,
-    phonenumber: clientData.phonenumber,
-    email: clientData.email,
-    identification: clientData.identification,
-  };
-
+    const transformedClientData = {
+      firstname: clientData.firstName,
+      lastname: clientData.lastName,
+      phonenumber: clientData.phonenumber,
+      email: clientData.email,
+      identification: clientData.identification,
+    };
 
     try {
       const response = await addClient(transformedClientData);
-      console.log("Client added successfully:", response);
-      // Close the modal
+      setShowToast(true);
+      setTimeout(() => {
+        setShowToast(false);
+        window.location.reload();
+      }, 2000);
       setIsModalOpen(false);
     } catch (err) {
       console.error("Error adding client:", err);
@@ -52,7 +56,7 @@ const AddClientModal: React.FC = () => {
           id="addClientModal"
           tabIndex={-1}
           aria-hidden="true"
-          className="fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full backdrop-filter backdrop-blur-sm bg-opacity-50"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-x-hidden overflow-y-auto backdrop-filter backdrop-blur-sm bg-opacity-50"
         >
           <div className="relative w-full max-w-2xl max-h-full">
             <div className="relative bg-white rounded-lg shadow dark:bg-gray-800">
@@ -199,6 +203,19 @@ const AddClientModal: React.FC = () => {
           </div>
         </div>
       )}
+
+      {showToast && (
+        <div className="fixed top-4 left-1/2 transform -translate-x-1/2">
+          <Toast>
+            <div className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-green-100 text-green-500 dark:bg-green-800 dark:text-green-200">
+              <HiCheck className="h-5 w-5" />
+            </div>
+            <div className="ml-3 text-sm font-normal">Client added successfully.</div>
+            <Toast.Toggle onClick={() => setShowToast(false)} />
+          </Toast>
+        </div>
+      )}
+
     </>
   );
 };
