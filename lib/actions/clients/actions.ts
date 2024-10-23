@@ -9,7 +9,7 @@ export async function getClients() {
 		}
 
 		const responseToken = await response.json()
-		console.log("dentro de actions", responseToken)
+		
 		return responseToken
 	} catch (err) {
 		console.error("Error fetching clients:", err)
@@ -41,24 +41,3 @@ export async function addClient(clientData: Record<string, any>) {
         throw err;
     }
 }
-// export async function addClient(clientData: Record<string, any>) {
-//     try {
-//         const response = await fetch(`${import.meta.env.PUBLIC_BACKEND_URL}/client`, {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//             },
-//             body: JSON.stringify(clientData),
-//         });
-
-//         if (!response.ok) {
-//             throw new Error(`HTTP error! Status: ${response.status}`);
-//         }
-
-//         const responseData = await response.json();
-//         return responseData;
-//     } catch (err) {
-//         console.error("Error adding client:", err);
-//         throw err;
-//     }
-// }

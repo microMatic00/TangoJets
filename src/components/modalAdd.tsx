@@ -10,7 +10,7 @@ const AddClientModal: React.FC = () => {
   const [showToast, setShowToast] = useState(false);
 
   const handleToggleModal = () => {
-    setIsModalOpen(!isModalOpen);
+    setIsModalOpen((prev) => !prev);
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
