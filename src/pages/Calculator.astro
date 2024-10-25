@@ -1,0 +1,74 @@
+---
+import { useState } from 'react';
+import Layout from '../layouts/Layout.astro';
+import { Options } from '../components/Api Related/OptionsCBairport';
+import { getAirportDistanceFromAirportCode } from '../components/Api Related/utils';
+import { ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+---
+
+<Layout title="Calculator">
+  <ToastContainer client:load />
+  <div style="margin-bottom: 10px; display: flex; align-items: center;">
+    <label for="from" style="margin-right: 10px; width: 50px; color: black;">Salida</label>
+    <select id="from" name="from" style="width: 100px; color: black;">
+      {Options.map(option => (
+        <option value={option.label}>{option.label}</option>
+      ))}
+    </select>
+  </div>
+  <div style="margin-bottom: 10px; display: flex; align-items: center;">
+    <label for="to" style="margin-right: 10px; width: 50px; color: black;">Llegada</label>
+    <select id="to" name="to" style="width: 100px; color: black;">
+      {Options.map(option => (
+        <option value={option.label}>{option.label}</option>
+      ))}
+    </select>
+  </div>
+  <div>
+    <button id="caldis" style="color: black;">Calcular</button>
+  </div>
+  <div id="result" style="margin-top: 10px; color: black;"></div>
+  <script >
+    import { Bounce, toast } from "react-toastify"
+    import "react-toastify/dist/ReactToastify.css"
+    import { getAirportDistanceFromAirportCode } from '../components/Api Related/utils';
+
+    // Function to handle button click
+    async function calculateDistance() {
+        const fromSelect = document.querySelector("#from") as HTMLSelectElement;
+        const toSelect = document.querySelector("#to") as HTMLSelectElement;
+      
+
+        if (fromSelect && toSelect ) {
+            const fromValue = fromSelect.value;
+            const toValue = toSelect.value;
+
+            try {
+                const distance = await getAirportDistanceFromAirportCode(fromValue, toValue);
+              toast.success(`La distancia entre ${fromValue} y ${toValue} es de ${distance} km`, {
+                position: "top-right",
+                autoClose: 50000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                transition: Bounce
+              });
+            } catch (error) {
+               
+                console.error('Error calculating distance:', error);
+            }
+        }
+    }
+
+    // Add event listener to the button
+    document.addEventListener("DOMContentLoaded", () => {
+        const caldisButton = document.querySelector("#caldis");
+        if (caldisButton) {
+            caldisButton.addEventListener("click", calculateDistance);
+        }
+    });
+  </script>
+</Layout>
