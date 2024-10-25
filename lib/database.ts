@@ -16,3 +16,24 @@ export async function getClients() {
       { id: 5, name: "Embraer Praetor 600", capacity: "12", flightrange:"4400 km", speed: "860 km/h", price: "$21M" },
     ];
   }
+
+  export async function getFlights() {
+    return [
+      { 
+        id: 1, 
+        launchtime: "2024-10-15 08:00", 
+        arrivaltime: "2024-10-15 10:00", 
+        to: "New York", 
+        airship: "Jet A1", 
+        createdby: "John Doe" 
+      },
+      { 
+        id: 2, 
+        launchtime: "2024-10-16 12:00", 
+        arrivaltime: "2024-10-16 14:00", 
+        to: "Los Angeles", 
+        airship: "Jet B2", 
+        createdby: "Jane Smith" 
+      }
+    ];
+  }

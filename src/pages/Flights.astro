@@ -1,0 +1,17 @@
+---
+import { getFlights } from "../../lib/actions/flights/actions"
+import TableModal from "../components/table/TableModal"
+import Layout from "../layouts/Layout.astro"
+
+const deleteUrl = "http://localhost:3001/flight"
+
+const data = await getFlights()
+---
+
+<Layout title="Flights">
+	<div class="flex flex-col space-y-4">
+		<div>
+			<TableModal info={data} url={deleteUrl} client:load />
+		</div>
+	</div>
+</Layout>
