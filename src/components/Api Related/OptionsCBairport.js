@@ -1,3 +1,5 @@
+// TODO Las opcines de los aeropuertos se deben de obtener de la base de datos o del csv por lo menos, ademas deberian poder selecionarse con varias opciones
+
 export const Options1 = [
 { label: ' AAE'},
 { label: ' AAL'},
@@ -1906,4 +1908,7 @@ export const Options1 = [
 export const Options = [
     { label: 'SAEZ'},
     { label: 'KJFK'},
+    { label: 'OMAL'},
+    { label: 'FNNG'},
+    { label: 'SAZO'},
 ];

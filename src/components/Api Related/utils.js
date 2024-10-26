@@ -1,4 +1,6 @@
+
 const API_KEY = '164e2e6a836de5874ee4e7810db5aca0b0529b11997904bc9071050d26e0dc689809b9f71ae59155ab5eb656f03f8245';
+
 
   export async function getAirportCoordinates(ICAO) {
    const url = `https://airportdb.io/api/v1/airport/${ICAO}?apiToken=${API_KEY}`;
@@ -33,7 +35,7 @@ function calculateDistance(coord1, coord2) {
             Math.sin(dLon / 2) * Math.sin(dLon / 2);
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   const distance = R * c; // Distance in kilometers
-  return distance;
+  return Math.round(distance);
 }
 
 export async function getAirportDistanceFromAirportCode(code1, code2) {
@@ -44,6 +46,7 @@ export async function getAirportDistanceFromAirportCode(code1, code2) {
     
     if (coordinates1 && coordinates2) {
       const distance = calculateDistance(coordinates1, coordinates2);
+     
       return distance;
     } else {
       return "No distance found1";
