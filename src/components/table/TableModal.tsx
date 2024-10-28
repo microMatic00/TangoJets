@@ -46,7 +46,7 @@ const TableModal: React.FC<TableProps> = ({ url, info }) => {
 	}
 
 	return (
-		<div className="relative overflow-x-auto overflow-y-auto max-h-[800px] w-full max-w-7x1 shadow-md sm:rounded-lg">
+		<div className="relative overflow-x-auto overflow-y-auto max-h-[800px] w-full max-w-[100%] shadow-md sm:rounded-lg">
 			<table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
 				<thead className="sticky top-0 text-xs text-gray-700 uppercase bg-gray-400 dark:bg-gray-700 dark:text-gray-400">
 					<tr>
