@@ -4,12 +4,9 @@ import ModalAdd from "../components/modalAdd"
 import TableModal from "../components/table/TableModal"
 import { getClients } from "../../lib/actions/clients/actions"
 
-const deleteUrl = "http://localhost:3001/client"
 const data = await getClients()
 
-
 // Definir los encabezados con claves que coincidan con las propiedades de los objetos 'clients'
-
 ---
 
 <Layout title="Clients">
@@ -18,7 +15,7 @@ const data = await getClients()
 			<ModalAdd client:load />
 		</div>
 		<div>
-			<TableModal info={data} url={deleteUrl} client:load />
+			<TableModal info={data} caseType="client" client:load />
 		</div>
 	</div>
 </Layout>
