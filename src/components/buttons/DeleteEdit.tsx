@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Button, Modal } from "flowbite-react"
 import { HiOutlineExclamationCircle } from "react-icons/hi"
-import { deleteAction } from "../../../lib/actions/airships/actions"
+import { deleteAction } from "../../../lib/actions/delete/actions"
 
 interface Props {
 	id: number
@@ -13,8 +13,6 @@ const DeleteEdit = ({ id, caseType }: Props) => {
 
 	const handleDelete = async () => {
 		try {
-			console.log({ id })
-			console.log({ caseType })
 			await deleteAction({ caseType: caseType, id })
 
 			window.location.reload()
