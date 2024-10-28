@@ -2,23 +2,16 @@ import React, { useState } from 'react';
 import { Button, Modal } from "flowbite-react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 
-const DeleteEdit = ({ id, url }: { id: number; url: string }) => {
+const DeleteEdit = ({ id, deleteFunc }: { id: number; deleteFunc: (id: number) => Promise<Response> })=> {
   const [openModal, setOpenModal] = useState(false);
 
-  const handleDelete = async () => {
-   
+  const handleDelete = async (idd : number ) => {
     try {
-      const response = await fetch(`${url}/${id}`, {
-        method: 'DELETE',
-      });
-      if (!response.ok) {
-        throw new Error('Error al eliminar el cliente');
-      }
-     
-      // Aquí puedes agregar lógica para actualizar la UI después de eliminar el cliente
-
+      console.log(`Deleting airship with ID ${id}`);
+      
+      await deleteFunc(idd);
+      console.log(`Airship with ID ${idd} deleted successfully.`);
       window.location.reload();
-
     } catch (error) {
       console.error('Error:', error);
     }
@@ -47,17 +40,16 @@ const DeleteEdit = ({ id, url }: { id: number; url: string }) => {
         </svg>
       </button>
 
-      {/* Modal de confirmación tode*/}
       <Modal show={openModal} size="md" onClose={() => setOpenModal(false)} popup>
         <Modal.Header />
         <Modal.Body>
           <div className="text-center">
             <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
             <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-                Are you sure you want to delete this id {id}? {/*  {"cambiar a nombre de la entidad"} */}
+                Are you sure you want to delete this id {id}?
             </h3>
             <div className="flex justify-center gap-4">
-              <Button className="bg-red-600" onClick={handleDelete}>
+              <Button className="bg-red-600" onClick={ () => handleDelete(id)}>
                 Yes, I'm sure
               </Button>
               <Button color="gray" onClick={() => setOpenModal(false)}>

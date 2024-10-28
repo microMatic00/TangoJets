@@ -16,3 +16,18 @@ export async function getFlights() {
 		throw err
 	}
 }
+export async function deleteFlight(id : number) {
+    try {
+        const response = await fetch(`${import.meta.env.PUBLIC_BACKEND_URL}/flight/${id}`, {
+        method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        return response;
+    } catch (err) {
+        console.error("Error adding client:", err);
+        throw err;
+    }
+}
