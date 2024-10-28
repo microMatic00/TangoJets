@@ -3,17 +3,15 @@ import { getFlights } from "../../lib/actions/flights/actions"
 import TableModal from "../components/table/TableModal"
 import Layout from "../layouts/Layout.astro"
 
-const deleteUrl = "http://localhost:3001/flight"
-
 const data = await getFlights()
 const filteredData = data.map((flight: any) => {
-	const { id, updatedAt, ...rest } = flight
+	const { updatedAt, ...rest } = flight
 	return rest
 })
 ---
 
 <Layout title="Flights">
 	<div class="flex">
-		<TableModal info={filteredData} url={deleteUrl} client:load />
+		<TableModal info={filteredData} caseType={"flight"} client:load />
 	</div>
 </Layout>

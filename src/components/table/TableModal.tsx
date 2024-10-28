@@ -1,48 +1,45 @@
-import React, { useEffect, useState } from "react"
-import DeleteEdit from "../buttons/DeleteEdit" // Asegúrate de tener el componente DeleteEdit adaptado a React
-
-// Definir las interfaces como tipos de TypeScript
+import React, { useState } from "react";
+import DeleteEdit from "../buttons/DeleteEdit";
 
 export interface Client {
-	id: number
-	firstname: string
-	lastname: string
-	phonenumber: string
-	email: string
-	identification: string
+  id: number;
+  firstname: string;
+  lastname: string;
+  phonenumber: string;
+  email: string;
+  identification: string;
 }
 
 export interface Airship {
-	id: number
-	name: string
-	capacity: string
-	flightrange: string
-	speed: string
-	price: string
+  id: number;
+  name: string;
+  capacity: string;
+  flightrange: string;
+  speed: string;
+  price: string;
 }
 
 export interface Flight {
-	id: number
-	launchtime: string // Format: "YYYY-MM-DD HH:MM"
-	arrivaltime: string // Same format as launchtime
-	to: string
-	airship: string
-	createdby: string
+  id: number;
+  launchtime: string;
+  arrivaltime: string;
+  to: string;
+  airship: string;
+  createdby: string;
 }
 
-type DataType = Flight | Airship | Client
+type DataType = Flight | Airship | Client;
 
 interface TableProps {
 	info: DataType[]
-	url: string
+	caseType: string
 }
 
-const TableModal: React.FC<TableProps> = ({ url, info }) => {
+const TableModal = ({ info, caseType }: TableProps) => {
 	const [data, setData] = useState<DataType[]>(info)
 
 	const editClient = (id: number) => {
 		console.log(`Editing client with ID: ${id}`)
-		// Implementar lógica para editar el cliente
 	}
 
 	return (
@@ -97,7 +94,10 @@ const TableModal: React.FC<TableProps> = ({ url, info }) => {
 									</svg>
 								</button>
 
-								<DeleteEdit id={singledata.id} url={url} />
+								<DeleteEdit
+									id={singledata.id}
+									caseType={caseType}
+								/>
 							</td>
 						</tr>
 					))}
@@ -107,4 +107,4 @@ const TableModal: React.FC<TableProps> = ({ url, info }) => {
 	)
 }
 
-export default TableModal
+export default TableModal;

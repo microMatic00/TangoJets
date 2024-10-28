@@ -41,3 +41,19 @@ export async function addClient(clientData: Record<string, any>) {
         throw err;
     }
 }
+
+export async function deleteClient(id : number) {
+    try {
+        const response = await fetch(`${import.meta.env.PUBLIC_BACKEND_URL}/client/${id}`, {
+        method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        return response;
+    } catch (err) {
+        console.error("Error adding client:", err);
+        throw err;
+    }
+}

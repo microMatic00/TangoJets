@@ -4,15 +4,7 @@ import ModalAddJet from "../components/modalAddJet.astro"
 import TableModal from "../components/table/TableModal"
 
 import { getAirships } from "../../lib/actions/airships/actions"
-
-
-const deleteUrl = "http://localhost:3001/airship"
-const who = "airship"
-
 const data = await getAirships()
-
-// Definir los encabezados con claves que coincidan con las propiedades de los objetos 'jets'
-
 ---
 
 <Layout title="Airships">
@@ -21,11 +13,7 @@ const data = await getAirships()
 			<ModalAddJet />
 		</div>
 		<div>
-			<TableModal
-				info={data}
-				url={deleteUrl}
-				client:load
-			/>
+			<TableModal info={data} caseType="airship" client:load />
 		</div>
 	</div>
 </Layout>

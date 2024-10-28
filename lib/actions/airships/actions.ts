@@ -9,7 +9,7 @@ export async function getAirships() {
 		}
 
 		const responseToken = await response.json()
-		
+
 		return responseToken
 	} catch (err) {
 		console.error("Error fetching Airships:", err)
