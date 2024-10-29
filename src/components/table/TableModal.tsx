@@ -37,7 +37,7 @@ interface TableProps {
 }
 
 const TableModal = ({ info, caseType }: TableProps) => {
-	const [data, setData] = useState<DataType[]>([])
+	const [data, setData] = useState<DataType[]>(info)
 
 	const editClient = (id: number) => {
 		console.log(`Editing client with ID: ${id}`)
