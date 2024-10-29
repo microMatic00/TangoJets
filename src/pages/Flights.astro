@@ -10,10 +10,10 @@ const filteredData = data
 		return rest
 	})
 	.filter((flight: Flight) => {
-		const arrivalTime = new Date(flight.arrivaltime)
+		const launchTime = new Date(flight.launchtime)
 		const currentTime = new Date()
 
-		return currentTime < arrivalTime
+		return currentTime < launchTime
 	})
 ---
 
