@@ -1,9 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro"
-import TableModal from "../components/table/TableModal"
-
-import { getAirships } from "../../lib/actions/airships/actions"
 import ModalJetAdd from "../components/modals/ModalJetAdd"
+import TableModal from "../components/table/TableModal"
+import { getAirships } from "../../lib/actions/airships/actions"
+
 const data = await getAirships()
 ---
 

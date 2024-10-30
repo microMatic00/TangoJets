@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Toast } from "flowbite-react";
 import { HiCheck } from "react-icons/hi";
-import { addAirship } from '../../lib/actions/airships/actions';
+import { addAirship } from "../../../lib/actions/airships/actions"
 
 
 const AddJetModal: React.FC = () => {
