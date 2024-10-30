@@ -40,7 +40,6 @@ interface TableProps {
 const TableModal = ({ info, caseType }: TableProps) => {
 	const [data, setData] = useState<DataType[]>(info)
 
-
 	useEffect(() => {
 		setData(info)
 	}, [info])
@@ -85,24 +84,24 @@ const TableModal = ({ info, caseType }: TableProps) => {
 									)
 								)}
 
-							<td className="px-6 py-3 flex whitespace-nowrap">
-								<Edit
-									id={singledata.id}
-									caseType={caseType}
-									data={singledata}
-								/>
-								<Delete
-									id={singledata.id}
-									caseType={caseType}
-								/>
-							</td>
-						</tr>
-					))}
-				</tbody>
-			</table>
-						) : (
-							<EmptyTableCard /> 
-							)}
+								<td className="px-6 py-3 flex whitespace-nowrap">
+									<Edit
+										id={singledata.id}
+										caseType={caseType}
+										data={singledata}
+									/>
+									<Delete
+										id={singledata.id}
+										caseType={caseType}
+									/>
+								</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			) : (
+				<EmptyTableCard />
+			)}
 		</div>
 	)
 }
