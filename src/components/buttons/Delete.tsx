@@ -8,7 +8,7 @@ interface Props {
 	caseType: string
 }
 
-const DeleteEdit = ({ id, caseType }: Props) => {
+const Delete = ({ id, caseType }: Props) => {
 	const [openModal, setOpenModal] = useState(false)
 
 	const handleDelete = async () => {
@@ -78,4 +78,4 @@ const DeleteEdit = ({ id, caseType }: Props) => {
 	)
 }
 
-export default DeleteEdit
+export default Delete

@@ -3,8 +3,9 @@ import { Button, Modal } from "flowbite-react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { editAction } from "../../../lib/actions/edit/actions";
 
-import ModalEditCli from "../../components/ModalEditCli";
-import ModalEditJet from "../../components/modalEditJet";
+import ModalEditCli from "../ModalEditCli";
+import ModalEditJet from "../modalEditJet";
+
 
 interface Props {
   id: number;
@@ -32,7 +33,7 @@ const Edit = ({ id, caseType, data }: Props) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
-  console.log(caseType);
+
   return (
     <>
       <button

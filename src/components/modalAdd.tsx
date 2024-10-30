@@ -6,7 +6,7 @@ import { addClient } from '../../lib/actions/clients/actions';
 import { Toast } from "flowbite-react";
 import { HiCheck } from "react-icons/hi";
 
-const AddClientModal: React.FC = () => {
+const ModalAdd: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showToast, setShowToast] = useState(false);
 
@@ -221,4 +221,4 @@ const AddClientModal: React.FC = () => {
   );
 };
 
-export default AddClientModal;
+export default ModalAdd;
