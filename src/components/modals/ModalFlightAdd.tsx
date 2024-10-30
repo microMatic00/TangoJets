@@ -3,9 +3,9 @@ import "react-phone-input-2/lib/style.css";
 
 import { Toast } from "flowbite-react";
 import { HiCheck } from "react-icons/hi";
-import { addClient } from "../../../lib/actions/clients/actions";
+import { addFlight } from "../../../lib/actions/flights/actions";
 
-const ModalAdd: React.FC = () => {
+const ModalFlightAdd: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showToast, setShowToast] = useState(false);
 
@@ -17,18 +17,19 @@ const ModalAdd: React.FC = () => {
     event.preventDefault();
     const formElement = event.target as HTMLFormElement;
     const formData = new FormData(formElement);
-    const clientData = Object.fromEntries(formData.entries());
+    const flightData = Object.fromEntries(formData.entries());
 
-    const transformedClientData = {
-      firstname: clientData.firstName,
-      lastname: clientData.lastName,
-      phonenumber: clientData.phonenumber,
-      email: clientData.email,
-      identification: clientData.identification,
+    const transformedFlightData = {
+      launchtime: new Date(flightData.launchtime as string).toISOString(),
+      arrivaltime: new Date(flightData.arrivaltime as string).toISOString(),
+      to: flightData.to as string,
+      from: flightData.from as string,
+      airship_id: Number(flightData.airship_id),
+      createdby: Number(flightData.createdby),
     };
 
     try {
-      const response = await addClient(transformedClientData);
+      const response = await addFlight(transformedFlightData);
       setShowToast(true);
       setTimeout(() => {
         setShowToast(false);
@@ -36,24 +37,24 @@ const ModalAdd: React.FC = () => {
       }, 2000);
       setIsModalOpen(false);
     } catch (err) {
-      console.error("Error adding client:", err);
+      console.error("Error adding flight:", err);
     }
   };
 
   return (
     <>
       <button
-        id="addClientButton"
+        id="addFlightButton"
         className="block text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
         type="button"
         onClick={handleToggleModal}
       >
-        Add Client
+        Add Flight
       </button>
 
       {isModalOpen && (
         <div
-          id="addClientModal"
+          id="addFlightModal"
           tabIndex={-1}
           aria-hidden="true"
           className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-x-hidden overflow-y-auto backdrop-filter backdrop-blur-sm bg-opacity-50"
@@ -62,7 +63,7 @@ const ModalAdd: React.FC = () => {
             <div className="relative bg-white rounded-lg shadow dark:bg-gray-800">
               <div className="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                  Add New Client
+                  Add New Flight
                 </h3>
                 <button
                   type="button"
@@ -86,96 +87,94 @@ const ModalAdd: React.FC = () => {
                 </button>
               </div>
               <div className="p-6 space-y-6">
-                <form id="addClientForm" onSubmit={handleSubmit}>
+                <form id="addFlightForm" onSubmit={handleSubmit}>
                   <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                     <div>
                       <label
-                        htmlFor="firstName"
+                        htmlFor="launchtime"
                         className="block text-sm font-medium text-gray-900 dark:text-gray-200"
                       >
-                        First Name
+                        Launch Time
+                      </label>
+                      <input
+                        type="datetime-local"
+                        id="launchtime"
+                        name="launchtime"
+                        className="block w-full px-4 py-2 mt-1 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="arrivaltime"
+                        className="block text-sm font-medium text-gray-900 dark:text-gray-200"
+                      >
+                        Arrival Time
+                      </label>
+                      <input
+                        type="datetime-local"
+                        id="arrivaltime"
+                        name="arrivaltime"
+                        className="block w-full px-4 py-2 mt-1 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="to"
+                        className="block text-sm font-medium text-gray-900 dark:text-gray-200"
+                      >
+                        To
                       </label>
                       <input
                         type="text"
-                        id="firstName"
-                        name="firstName"
+                        id="to"
+                        name="to"
                         className="block w-full px-4 py-2 mt-1 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         required
                       />
                     </div>
                     <div>
                       <label
-                        htmlFor="lastName"
+                        htmlFor="from"
                         className="block text-sm font-medium text-gray-900 dark:text-gray-200"
                       >
-                        Last Name
+                        From
                       </label>
                       <input
                         type="text"
-                        id="lastName"
-                        name="lastName"
+                        id="from"
+                        name="from"
                         className="block w-full px-4 py-2 mt-1 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         required
                       />
                     </div>
                     <div>
                       <label
-                        htmlFor="phonenumber"
+                        htmlFor="airship_id"
                         className="block text-sm font-medium text-gray-900 dark:text-gray-200"
                       >
-                        Phone
+                        Airship ID
                       </label>
                       <input
-                        type="tel"
-                        id="phonenumber"
-                        name="phonenumber"
+                        type="number"
+                        id="airship_id"
+                        name="airship_id"
                         className="block w-full px-4 py-2 mt-1 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         required
                       />
                     </div>
                     <div>
                       <label
-                        htmlFor="email"
+                        htmlFor="createdby"
                         className="block text-sm font-medium text-gray-900 dark:text-gray-200"
                       >
-                        Email
+                        Created By
                       </label>
                       <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        className="block w-full px-4 py-2 mt-1 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        required
-                      />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor="documentType"
-                        className="block text-sm font-medium text-gray-900 dark:text-gray-200"
-                      >
-                        Document Type
-                      </label>
-                      <select
-                        id="documentType"
-                        name="documentType"
-                        className="block w-full px-4 py-2 mt-1 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        required
-                      >
-                        <option value="dni">DNI</option>
-                        <option value="passport">Passport</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label
-                        htmlFor="identification"
-                        className="block text-sm font-medium text-gray-900 dark:text-gray-200"
-                      >
-                        Document Number
-                      </label>
-                      <input
-                        type="text"
-                        id="identification"
-                        name="identification"
+                        type="number"
+                        id="createdby"
+                        name="createdby"
                         className="block w-full px-4 py-2 mt-1 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         required
                       />
@@ -183,11 +182,11 @@ const ModalAdd: React.FC = () => {
                   </div>
                   <div className="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
                     <button
-                      id="submitClient"
+                      id="submitFlight"
                       type="submit"
                       className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     >
-                      Add Client
+                      Add Flight
                     </button>
                     <button
                       type="button"
@@ -211,7 +210,7 @@ const ModalAdd: React.FC = () => {
               <HiCheck className="h-5 w-5" />
             </div>
             <div className="ml-3 text-sm font-normal">
-              Client added successfully.
+              Flight added successfully.
             </div>
             <Toast.Toggle onClick={() => setShowToast(false)} />
           </Toast>
@@ -221,4 +220,4 @@ const ModalAdd: React.FC = () => {
   );
 };
 
-export default ModalAdd;
+export default ModalFlightAdd;
