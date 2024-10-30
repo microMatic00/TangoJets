@@ -16,9 +16,9 @@ const Edit = ({ id, caseType, data }: Props) => {
 
 	const handleEdit = async (event: React.FormEvent) => {
 		event.preventDefault()
+		window.location.reload()
 		try {
-			await editAction({ caseType, id, data: formData })
-			window.location.reload()
+			await editAction({ caseType, data: formData })
 		} catch (error) {
 			console.error("Error:", error)
 		}
@@ -29,7 +29,7 @@ const Edit = ({ id, caseType, data }: Props) => {
 		e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
 	) => {
 		const { name, value } = e.target
-		setFormData((prevData) => ({ ...prevData, [name]: value }))
+		setFormData((prevData) => ({ ...prevData, [name]: value, id: id }))
 	}
 
 	return (
