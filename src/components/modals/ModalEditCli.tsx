@@ -2,12 +2,19 @@ import React from "react";
 
 interface Props {
   formData: Record<string, any>;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
+  handleChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => void;
   handleEdit: (event: React.FormEvent) => void;
   setOpenModal: (open: boolean) => void;
 }
 
-const ModalEditCli = ({ formData, handleChange, handleEdit, setOpenModal }: Props) => {
+const ModalEditCli = ({
+  formData,
+  handleChange,
+  handleEdit,
+  setOpenModal,
+}: Props) => {
   return (
 		<div
 			id="editClientModal"
