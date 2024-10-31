@@ -9,7 +9,7 @@ interface Props {
   setOpenModal: (open: boolean) => void;
 }
 
-const ModalEditCli = ({
+const ModalFlightEdit = ({
   formData,
   handleChange,
   handleEdit,
@@ -17,7 +17,7 @@ const ModalEditCli = ({
 }: Props) => {
   return (
     <div
-      id="editClientModal"
+      id="editFlightModal"
       tabIndex={-1}
       aria-hidden="true"
       className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-x-hidden overflow-y-auto backdrop-filter backdrop-blur-sm bg-opacity-50"
@@ -26,7 +26,7 @@ const ModalEditCli = ({
         <div className="relative bg-white rounded-lg shadow dark:bg-gray-800">
           <div className="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-              Edit Client
+              Edit Flight
             </h3>
             <button
               type="button"
@@ -50,20 +50,54 @@ const ModalEditCli = ({
             </button>
           </div>
           <div className="p-6 space-y-6">
-            <form id="editClientForm" onSubmit={handleEdit}>
+            <form id="editFlightForm" onSubmit={handleEdit}>
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                 <div>
                   <label
-                    htmlFor="firstname"
+                    htmlFor="launchtime"
                     className="block text-sm font-medium text-gray-900 dark:text-gray-200"
                   >
-                    First Name
+                    Launch Time
+                  </label>
+                  <input
+                    type="datetime-local"
+                    id="launchtime"
+                    name="launchtime"
+                    value={formData.launchtime}
+                    onChange={handleChange}
+                    className="block w-full px-4 py-2 mt-1 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="arrivaltime"
+                    className="block text-sm font-medium text-gray-900 dark:text-gray-200"
+                  >
+                    Arrival Time
+                  </label>
+                  <input
+                    type="datetime-local"
+                    id="arrivaltime"
+                    name="arrivaltime"
+                    value={formData.arrivaltime}
+                    onChange={handleChange}
+                    className="block w-full px-4 py-2 mt-1 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="to"
+                    className="block text-sm font-medium text-gray-900 dark:text-gray-200"
+                  >
+                    To
                   </label>
                   <input
                     type="text"
-                    id="firstname"
-                    name="firstname"
-                    value={formData.firstname}
+                    id="to"
+                    name="to"
+                    value={formData.to}
                     onChange={handleChange}
                     className="block w-full px-4 py-2 mt-1 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required
@@ -71,16 +105,16 @@ const ModalEditCli = ({
                 </div>
                 <div>
                   <label
-                    htmlFor="lastname"
+                    htmlFor="from"
                     className="block text-sm font-medium text-gray-900 dark:text-gray-200"
                   >
-                    Last Name
+                    From
                   </label>
                   <input
                     type="text"
-                    id="lastname"
-                    name="lastname"
-                    value={formData.lastname}
+                    id="from"
+                    name="from"
+                    value={formData.from}
                     onChange={handleChange}
                     className="block w-full px-4 py-2 mt-1 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required
@@ -88,16 +122,16 @@ const ModalEditCli = ({
                 </div>
                 <div>
                   <label
-                    htmlFor="phonenumber"
+                    htmlFor="airship_id"
                     className="block text-sm font-medium text-gray-900 dark:text-gray-200"
                   >
-                    Phone
+                    Airship ID
                   </label>
                   <input
-                    type="tel"
-                    id="phonenumber"
-                    name="phonenumber"
-                    value={formData.phonenumber}
+                    type="number"
+                    id="airship_id"
+                    name="airship_id"
+                    value={formData.airship_id}
                     onChange={handleChange}
                     className="block w-full px-4 py-2 mt-1 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required
@@ -105,52 +139,16 @@ const ModalEditCli = ({
                 </div>
                 <div>
                   <label
-                    htmlFor="email"
+                    htmlFor="createdby"
                     className="block text-sm font-medium text-gray-900 dark:text-gray-200"
                   >
-                    Email
+                    Created By
                   </label>
                   <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="block w-full px-4 py-2 mt-1 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="documentType"
-                    className="block text-sm font-medium text-gray-900 dark:text-gray-200"
-                  >
-                    Document Type
-                  </label>
-                  <select
-                    id="documentType"
-                    name="documentType"
-                    value={formData.documentType}
-                    onChange={handleChange}
-                    className="block w-full px-4 py-2 mt-1 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required
-                  >
-                    <option value="dni">DNI</option>
-                    <option value="passport">Passport</option>
-                  </select>
-                </div>
-                <div>
-                  <label
-                    htmlFor="identification"
-                    className="block text-sm font-medium text-gray-900 dark:text-gray-200"
-                  >
-                    Document Number
-                  </label>
-                  <input
-                    type="text"
-                    id="identification"
-                    name="identification"
-                    value={formData.identification}
+                    type="number"
+                    id="createdby"
+                    name="createdby"
+                    value={formData.createdby}
                     onChange={handleChange}
                     className="block w-full px-4 py-2 mt-1 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required
@@ -163,7 +161,7 @@ const ModalEditCli = ({
                   type="submit"
                   className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 >
-                  Edit Client
+                  Edit Flight
                 </button>
                 <button
                   type="button"
@@ -181,4 +179,4 @@ const ModalEditCli = ({
   );
 };
 
-export default ModalEditCli;
+export default ModalFlightEdit;
