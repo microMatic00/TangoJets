@@ -90,7 +90,7 @@ const ModalAdd: React.FC = () => {
 									id="addClientForm"
 									onSubmit={handleSubmit}
 								>
-									<div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+									<div className="h-fit mb-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
 										<div>
 											<label
 												htmlFor="firstName"
@@ -186,7 +186,7 @@ const ModalAdd: React.FC = () => {
 											/>
 										</div>
 									</div>
-									<div className="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+									<div className="flex justify-start items-center py-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
 										<button
 											id="submitClient"
 											type="submit"
