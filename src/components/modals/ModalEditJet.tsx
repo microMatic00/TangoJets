@@ -51,7 +51,7 @@ const ModalEditJet = ({
 					</div>
 					<div className="p-6 space-y-6">
 						<form id="addJetForm" onSubmit={handleEdit}>
-							<div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+							<div className="h-fit mb-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
 								<div>
 									<label
 										htmlFor="jetName"
@@ -99,7 +99,7 @@ const ModalEditJet = ({
 										name="pricepermiles"
 										value={formData.pricepermiles}
 										onChange={handleChange}
-										className="block w-full px-4 py-2 mt-1 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+										className="block w-full px-4 py-2 mt-1 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
 										required
 									/>
 								</div>
@@ -116,7 +116,7 @@ const ModalEditJet = ({
 										name="seats"
 										value={formData.seats}
 										onChange={handleChange}
-										className="block w-full px-4 py-2 mt-1 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+										className="block w-full px-4 py-2 mt-1 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
 										required
 									/>
 								</div>
@@ -138,7 +138,7 @@ const ModalEditJet = ({
 									/>
 								</div>
 							</div>
-							<div className="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+							<div className="flex justify-start items-center py-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
 								<button
 									id="submitJet"
 									type="submit"
