@@ -1,7 +1,8 @@
 import React from "react"
+import type { Airship } from "../table/TableModal"
 
 interface Props {
-	formData: Record<string, any>
+	formData: Airship
 	handleChange: (
 		e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
 	) => void
@@ -63,7 +64,7 @@ const ModalEditJet = ({
 										type="text"
 										id="jetName"
 										name="jetName"
-										value={formData.jetName}
+										value={formData.title}
 										onChange={handleChange}
 										className="block w-full px-4 py-2 mt-1 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 										required
@@ -88,16 +89,16 @@ const ModalEditJet = ({
 								</div>
 								<div>
 									<label
-										htmlFor="pricepermiles"
+										htmlFor="pricepermile"
 										className="block text-sm font-medium text-gray-900 dark:text-gray-200"
 									>
 										Price per Mile
 									</label>
 									<input
 										type="number"
-										id="pricepermiles"
-										name="pricepermiles"
-										value={formData.pricepermiles}
+										id="pricepermile"
+										name="pricepermile"
+										value={formData.pricepermile}
 										onChange={handleChange}
 										className="block w-full px-4 py-2 mt-1 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
 										required

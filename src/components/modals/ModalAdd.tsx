@@ -14,31 +14,34 @@ const ModalAdd: React.FC = () => {
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-    const formElement = event.target as HTMLFormElement;
-    const formData = new FormData(formElement);
-    const clientData = Object.fromEntries(formData.entries());
+		event.preventDefault()
+		const formElement = event.target as HTMLFormElement
+		const formData = new FormData(formElement)
+		const clientData = Object.fromEntries(formData.entries())
 
-    const transformedClientData = {
-      firstname: clientData.firstName,
-      lastname: clientData.lastName,
-      phonenumber: clientData.phonenumber,
-      email: clientData.email,
-      identification: clientData.identification,
-    };
+		const transformedClientData = {
+			firstname: clientData.firstName,
+			lastname: clientData.lastName,
+			phonenumber: clientData.phonenumber,
+			email: clientData.email,
+			identification: clientData.identification,
+			title: clientData.title,
+			address: clientData.address,
+			company: clientData.company,
+		}
 
-    try {
-      const response = await addClient(transformedClientData);
-      setShowToast(true);
-      setTimeout(() => {
-        setShowToast(false);
-        window.location.reload();
-      }, 2000);
-      setIsModalOpen(false);
-    } catch (err) {
-      console.error("Error adding client:", err);
-    }
-  };
+		try {
+			const response = await addClient(transformedClientData)
+			setShowToast(true)
+			setTimeout(() => {
+				setShowToast(false)
+				window.location.reload()
+			}, 2000)
+			setIsModalOpen(false)
+		} catch (err) {
+			console.error("Error adding client:", err)
+		}
+  }
 
   return (
 		<>
@@ -181,6 +184,51 @@ const ModalAdd: React.FC = () => {
 												type="text"
 												id="identification"
 												name="identification"
+												className="block w-full px-4 py-2 mt-1 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+												required
+											/>
+										</div>
+										<div>
+											<label
+												htmlFor="title"
+												className="block text-sm font-medium text-gray-900 dark:text-gray-200"
+											>
+												Title
+											</label>
+											<input
+												type="text"
+												id="title"
+												name="title"
+												className="block w-full px-4 py-2 mt-1 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+												required
+											/>
+										</div>
+										<div>
+											<label
+												htmlFor="address"
+												className="block text-sm font-medium text-gray-900 dark:text-gray-200"
+											>
+												Address
+											</label>
+											<input
+												type="text"
+												id="address"
+												name="address"
+												className="block w-full px-4 py-2 mt-1 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+												required
+											/>
+										</div>
+										<div>
+											<label
+												htmlFor="company"
+												className="block text-sm font-medium text-gray-900 dark:text-gray-200"
+											>
+												Company
+											</label>
+											<input
+												type="text"
+												id="company"
+												name="company"
 												className="block w-full px-4 py-2 mt-1 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 												required
 											/>

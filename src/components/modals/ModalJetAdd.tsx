@@ -13,31 +13,31 @@ const AddJetModal: React.FC = () => {
   };
   
   const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-    const formElement = event.target as HTMLFormElement;
-    const formData = new FormData(formElement);
-    const jetData = Object.fromEntries(formData.entries());
-  
-    const transformedJetData = {
-      title: jetData.jetName,
-      status: jetData.status,
-      pricepermiles: jetData.pricepermiles,
-      seats: jetData.seats,
-      size: jetData.size,
-    };
-  
-    try {
-      const response = await addAirship(transformedJetData);
-      setShowToast(true);
-      setTimeout(() => {
-        setShowToast(false);
-        window.location.reload();
-      }, 2000);
-      setIsModalOpen(false);
-    } catch (err) {
-      console.error("Error adding client:", err);
-    }
-  };
+		event.preventDefault()
+		const formElement = event.target as HTMLFormElement
+		const formData = new FormData(formElement)
+		const jetData = Object.fromEntries(formData.entries())
+
+		const transformedJetData = {
+			title: jetData.jetName,
+			status: jetData.status,
+			pricepermile: jetData.pricepermile,
+			seats: jetData.seats,
+			size: jetData.size,
+		}
+
+		try {
+			const response = await addAirship(transformedJetData)
+			setShowToast(true)
+			setTimeout(() => {
+				setShowToast(false)
+				window.location.reload()
+			}, 2000)
+			setIsModalOpen(false)
+		} catch (err) {
+			console.error("Error adding client:", err)
+		}
+  }
 
   return (
 		<>
@@ -119,15 +119,15 @@ const AddJetModal: React.FC = () => {
 										</div>
 										<div>
 											<label
-												htmlFor="pricepermiles"
+												htmlFor="pricepermile"
 												className="block text-sm font-medium text-gray-900 dark:text-gray-200"
 											>
 												Price per Mile
 											</label>
 											<input
 												type="number"
-												id="pricepermiles"
-												name="pricepermiles"
+												id="pricepermile"
+												name="pricepermile"
 												className="block w-full px-4 py-2 mt-1 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
 												required
 											/>
