@@ -13,21 +13,22 @@ export interface Client {
 }
 
 export interface Airship {
-  id: number;
-  name: string;
-  capacity: string;
-  flightrange: string;
-  speed: string;
-  price: string;
+	id: number
+	title: string
+	seats: number
+	status: string
+	size: string
+	pricepermile: number
 }
 
 export interface Flight {
-  id: number;
-  launchtime: string;
-  arrivaltime: string;
-  to: string;
-  airship: string;
-  createdby: string;
+	id: number
+	launchtime: string
+	arrivaltime: string
+	to: string
+	from: string
+	airship_id: string
+	createdby: string
 }
 
 type DataType = Flight | Airship | Client;

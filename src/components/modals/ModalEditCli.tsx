@@ -158,6 +158,57 @@ const ModalEditCli = ({
 										required
 									/>
 								</div>
+								<div>
+									<label
+										htmlFor="title"
+										className="block text-sm font-medium text-gray-900 dark:text-gray-200"
+									>
+										Title
+									</label>
+									<input
+										type="text"
+										id="title"
+										name="title"
+										value={formData.title}
+										onChange={handleChange}
+										className="block w-full px-4 py-2 mt-1 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+										required
+									/>
+								</div>
+								<div>
+									<label
+										htmlFor="address"
+										className="block text-sm font-medium text-gray-900 dark:text-gray-200"
+									>
+										Address
+									</label>
+									<input
+										type="text"
+										id="address"
+										name="address"
+										value={formData.address}
+										onChange={handleChange}
+										className="block w-full px-4 py-2 mt-1 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+										required
+									/>
+								</div>
+								<div>
+									<label
+										htmlFor="company"
+										className="block text-sm font-medium text-gray-900 dark:text-gray-200"
+									>
+										Company
+									</label>
+									<input
+										type="text"
+										id="company"
+										name="company"
+										value={formData.company}
+										onChange={handleChange}
+										className="block w-full px-4 py-2 mt-1 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+										required
+									/>
+								</div>
 							</div>
 							<div className="flex justify-start items-center py-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
 								<button
