@@ -128,15 +128,15 @@ const ModalEditCli = ({
 										Document Type
 									</label>
 									<select
-										id="documentType"
-										name="documentType"
-										value={formData.documentType}
+										id="typeid"
+										name="typeid"
+										value={formData.typeid}
 										onChange={handleChange}
 										className="block w-full px-4 py-2 mt-1 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 										required
 									>
-										<option value="dni">DNI</option>
-										<option value="passport">
+										<option value="DNI">DNI</option>
+										<option value="Passport">
 											Passport
 										</option>
 									</select>
