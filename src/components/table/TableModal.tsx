@@ -41,10 +41,11 @@ interface TableProps {
 
 const TableModal = ({ info, caseType }: TableProps) => {
   const [data, setData] = useState<DataType[]>(info);
-
+  const [isHistoryPage, setIsHistoryPage] = useState(false)
   useEffect(() => {
-    setData(info);
-  }, [info]);
+		setData(info)
+		setIsHistoryPage(window.location.pathname === "/History")
+  }, [info])
 
   return (
 		<div className="relative overflow-x-auto overflow-y-auto max-h-[800px] w-full max-w-[100%] shadow-md sm:rounded-lg">
@@ -87,8 +88,7 @@ const TableModal = ({ info, caseType }: TableProps) => {
 								)}
 
 								<td className="px-6 py-3 flex whitespace-nowrap">
-									{window.location.pathname !==
-										"/History" && (
+									{!isHistoryPage && (
 										<Edit
 											id={singledata.id}
 											caseType={caseType}
