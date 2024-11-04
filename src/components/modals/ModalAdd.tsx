@@ -25,6 +25,7 @@ const ModalAdd: React.FC = () => {
 			phonenumber: clientData.phonenumber,
 			email: clientData.email,
 			identification: clientData.identification,
+			typeid: clientData.typeid,
 			title: clientData.title,
 			address: clientData.address,
 			company: clientData.company,
@@ -162,13 +163,13 @@ const ModalAdd: React.FC = () => {
 												Document Type
 											</label>
 											<select
-												id="documentType"
-												name="documentType"
+												id="typeid"
+												name="typeid"
 												className="block w-full px-4 py-2 mt-1 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 												required
 											>
-												<option value="dni">DNI</option>
-												<option value="passport">
+												<option value="DNI">DNI</option>
+												<option value="Passport">
 													Passport
 												</option>
 											</select>
