@@ -4,12 +4,13 @@ import { EmptyTableCard } from "../cards/EmptyTableCard";
 import Edit from "../buttons/Edit";
 
 export interface Client {
-  id: number;
-  firstname: string;
-  lastname: string;
-  phonenumber: string;
-  email: string;
-  identification: string;
+	id: number
+	firstname: string
+	lastname: string
+	phonenumber: string
+	email: string
+	identification: string
+	typeid: string
 }
 
 export interface Airship {
