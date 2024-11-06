@@ -3,43 +3,61 @@ import { Toast } from "flowbite-react";
 import { HiCheck } from "react-icons/hi";
 import { addAirship } from "../../../lib/actions/airships/actions"
 
-
 const AddJetModal: React.FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [showToast, setShowToast] = useState(false);
+	const [isModalOpen, setIsModalOpen] = useState(false)
+	const [showToast, setShowToast] = useState(false)
 
-  const handleToggleModal = () => {
-    setIsModalOpen((prev) => !prev);
-  };
-  
-  const handleSubmit = async (event: React.FormEvent) => {
+	const handleToggleModal = () => {
+		setIsModalOpen((prev) => !prev)
+	}
+
+	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault()
-		const formElement = event.target as HTMLFormElement
+
+		const formElement = event.currentTarget
 		const formData = new FormData(formElement)
+		const accessToken = import.meta.env.PUBLIC_ACCESS_TOKEN
+
 		const jetData = Object.fromEntries(formData.entries())
 
 		const transformedJetData = {
-			title: jetData.jetName,
-			status: jetData.status,
-			pricepermile: jetData.pricepermile,
-			seats: jetData.seats,
-			size: jetData.size,
+			title: jetData.jetName as string,
+			status: jetData.status as string,
+			pricepermile: Number(jetData.pricepermile),
+			seats: Number(jetData.seats),
+			size: jetData.size as string,
 		}
 
 		try {
+			const { Dropbox } = await import("dropbox")
+			const dbx = new Dropbox({ accessToken })
+
+			const fileList = formData.getAll("images") as File[]
+
+			const uploadPromises = fileList.map((file) =>
+				dbx.filesUpload({
+					path: `/${file.name}`,
+					contents: file,
+				})
+			)
+
+			const uploadResponses = await Promise.all(uploadPromises)
+			console.log("All files uploaded successfully", uploadResponses)
+
 			const response = await addAirship(transformedJetData)
+			console.log("Airship added successfully:", response)
+
 			setShowToast(true)
 			setTimeout(() => {
 				setShowToast(false)
-				window.location.reload()
+				setIsModalOpen(false)
 			}, 2000)
-			setIsModalOpen(false)
 		} catch (err) {
-			console.error("Error adding client:", err)
+			console.error("Error adding airship or uploading files:", err)
 		}
-  }
+	}
 
-  return (
+	return (
 		<>
 			<button
 				id="addJetButton"
@@ -162,6 +180,22 @@ const AddJetModal: React.FC = () => {
 												required
 											/>
 										</div>
+										<div>
+											<label
+												htmlFor="images"
+												className="block text-sm font-medium text-gray-900 dark:text-gray-200"
+											>
+												Images
+											</label>
+											<input
+												type="file"
+												id="images"
+												name="images"
+												multiple
+												className="block w-full px-4 py-2 mt-1 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+												required
+											/>
+										</div>
 									</div>
 									<div className="flex justify-start items-center py-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
 										<button
@@ -200,7 +234,7 @@ const AddJetModal: React.FC = () => {
 				</div>
 			)}
 		</>
-  )
-};
+	)
+}
 
 export default AddJetModal;
