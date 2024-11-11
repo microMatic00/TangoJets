@@ -16,35 +16,24 @@ const AddJetModal: React.FC = () => {
 
 		const formElement = event.currentTarget
 		const formData = new FormData(formElement)
-		const accessToken = import.meta.env.PUBLIC_ACCESS_TOKEN
 
-		const jetData = Object.fromEntries(formData.entries())
+		formData.set("title", formData.get("title") as string)
+		formData.set("status", formData.get("status") as string)
+		formData.set("pricepermile", formData.get("pricepermile") as string)
+		formData.set("seats", formData.get("seats") as string)
+		formData.set("size", formData.get("size") as string)
 
-		const transformedJetData = {
-			title: jetData.jetName as string,
-			status: jetData.status as string,
-			pricepermile: Number(jetData.pricepermile),
-			seats: Number(jetData.seats),
-			size: jetData.size as string,
+		const imagesInput = formElement.querySelector<HTMLInputElement>(
+			'input[name="images"]'
+		)
+		if (imagesInput?.files) {
+			for (let i = 0; i < imagesInput.files.length; i++) {
+				formData.append("images", imagesInput.files[i])
+			}
 		}
 
 		try {
-			const { Dropbox } = await import("dropbox")
-			const dbx = new Dropbox({ accessToken })
-
-			const fileList = formData.getAll("images") as File[]
-
-			const uploadPromises = fileList.map((file) =>
-				dbx.filesUpload({
-					path: `/${file.name}`,
-					contents: file,
-				})
-			)
-
-			const uploadResponses = await Promise.all(uploadPromises)
-			console.log("All files uploaded successfully", uploadResponses)
-
-			const response = await addAirship(transformedJetData)
+			const response = await addAirship(formData) // Pass formData here
 			console.log("Airship added successfully:", response)
 
 			setShowToast(true)
@@ -107,15 +96,15 @@ const AddJetModal: React.FC = () => {
 									<div className="h-fit mb-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
 										<div>
 											<label
-												htmlFor="jetName"
+												htmlFor="title"
 												className="block text-sm font-medium text-gray-900 dark:text-gray-200"
 											>
-												Jet Name
+												Jet Title
 											</label>
 											<input
 												type="text"
-												id="jetName"
-												name="jetName"
+												id="title"
+												name="title"
 												className="block w-full px-4 py-2 mt-1 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 												required
 											/>
