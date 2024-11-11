@@ -1,5 +1,4 @@
 ---
-import type { only } from "node:test"
 import { getFlights } from "../../lib/actions/flights/actions"
 import ModalFlightAdd from "../components/modals/ModalFlightAdd"
 import TableModal, { type Flight } from "../components/table/TableModal"
@@ -27,7 +26,7 @@ const filteredData = data
 			<TableModal
 				info={filteredData}
 				caseType={"flight"}
-				client:only="React"
+				client:only="react"
 			/>
 		</div>
 	</div>
