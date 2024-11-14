@@ -6,7 +6,7 @@ interface Props {
 	handleChange: (
 		e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
 	) => void
-	handleEdit: (event: React.FormEvent) => void
+	handleEdit: (event: React.FormEvent<HTMLFormElement>) => void
 	setOpenModal: (open: boolean) => void
 }
 
@@ -55,15 +55,15 @@ const ModalEditJet = ({
 							<div className="h-fit mb-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
 								<div>
 									<label
-										htmlFor="jetName"
+										htmlFor="title"
 										className="block text-sm font-medium text-gray-900 dark:text-gray-200"
 									>
-										Name
+										Jet Title
 									</label>
 									<input
 										type="text"
-										id="jetName"
-										name="jetName"
+										id="title"
+										name="title"
 										value={formData.title}
 										onChange={handleChange}
 										className="block w-full px-4 py-2 mt-1 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -134,6 +134,22 @@ const ModalEditJet = ({
 										name="size"
 										value={formData.size}
 										onChange={handleChange}
+										className="block w-full px-4 py-2 mt-1 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+										required
+									/>
+								</div>
+								<div>
+									<label
+										htmlFor="images"
+										className="block text-sm font-medium text-gray-900 dark:text-gray-200"
+									>
+										Images
+									</label>
+									<input
+										type="file"
+										id="images"
+										name="images"
+										multiple
 										className="block w-full px-4 py-2 mt-1 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 										required
 									/>

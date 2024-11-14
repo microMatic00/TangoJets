@@ -6,7 +6,7 @@ interface Props {
 	handleChange: (
 		e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
 	) => void
-	handleEdit: (event: React.FormEvent) => void
+	handleEdit: (event: React.FormEvent<HTMLFormElement>) => void
 	setOpenModal: (open: boolean) => void
 }
 
