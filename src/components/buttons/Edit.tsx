@@ -25,14 +25,14 @@ const Edit = ({ id, caseType, data }: Props) => {
 		const imagesInput = formElement.querySelector<HTMLInputElement>(
 			'input[name="images"]'
 		)
-		if (imagesInput && imagesInput?.files) {
+		if (imagesInput?.files) {
 			for (let i = 0; i < imagesInput.files.length; i++) {
 				formData.append("images", imagesInput.files[i])
 			}
 		}
 
 		try {
-			editAction({ caseType, data: formData }).then(() => {
+			editAction({ caseType, data: formData, id }).then(() => {
 				window.location.reload()
 			})
 		} catch (error) {
