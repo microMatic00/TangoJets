@@ -32,9 +32,9 @@ const Edit = ({ id, caseType, data }: Props) => {
 		}
 
 		try {
-			editAction({ caseType, data: formData, id }).then(() => {
+			await editAction({ caseType, data: formData, id }).then(() =>
 				window.location.reload()
-			})
+			)
 		} catch (error) {
 			console.error("Error:", error)
 		}
