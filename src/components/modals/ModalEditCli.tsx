@@ -1,12 +1,13 @@
 import React from "react";
+import type { Client } from "../table/TableModal"
 
 interface Props {
-  formData: Record<string, any>;
-  handleChange: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => void;
-  handleEdit: (event: React.FormEvent) => void;
-  setOpenModal: (open: boolean) => void;
+	formData: Client
+	handleChange: (
+		e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+	) => void
+	handleEdit: (event: React.FormEvent<HTMLFormElement>) => void
+	setOpenModal: (open: boolean) => void
 }
 
 const ModalEditCli = ({

@@ -16,13 +16,25 @@ const Edit = ({ id, caseType, data }: Props) => {
 	const [openModal, setOpenModal] = useState(false)
 	const [formData, setFormData] = useState<Client | Airship | Flight>(data)
 
-	const handleEdit = async (event: React.FormEvent) => {
+	const handleEdit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault()
 
+		const formElement = event.currentTarget
+		const formData = new FormData(formElement)
+
+		const imagesInput = formElement.querySelector<HTMLInputElement>(
+			'input[name="images"]'
+		)
+		if (imagesInput?.files) {
+			for (let i = 0; i < imagesInput.files.length; i++) {
+				formData.append("images", imagesInput.files[i])
+			}
+		}
+
 		try {
-			await editAction({ caseType, data: formData }).then(() => {
+			await editAction({ caseType, data: formData, id }).then(() =>
 				window.location.reload()
-			})
+			)
 		} catch (error) {
 			console.error("Error:", error)
 		}

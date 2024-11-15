@@ -11,6 +11,9 @@ export interface Client {
 	email: string
 	identification: string
 	typeid: string
+	title: string
+	address: string
+	company: string
 }
 
 export interface Airship {
@@ -20,6 +23,7 @@ export interface Airship {
 	status: string
 	size: string
 	pricepermile: number
+	images?: File[]
 }
 
 export interface Flight {
