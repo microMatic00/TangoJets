@@ -10,9 +10,5 @@ export const WelcomeText = () => {
 			setEmployeeName(name)
 		}
 	}, [])
-	return (
-		<h1 className="text-4xl font-bold mb-4">
-			Bienvenido a Tango Jet, {employeeName}
-		</h1>
-	)
+	return <h1 className="text-4xl font-bold">Welcome, {employeeName}</h1>
 }
