@@ -5,6 +5,7 @@ import ModalEditCli from "../modals/ModalEditCli";
 import ModalEditJet from "../modals/ModalEditJet";
 import ModalFlightEdit from "../modals/ModalFlightEdit";
 import type { Airship, Client, Flight } from "../table/TableModal"
+import { getCookie } from "../../utils/getCookie"
 
 interface Props {
 	id: number
@@ -18,7 +19,7 @@ const Edit = ({ id, caseType, data }: Props) => {
 
 	const handleEdit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault()
-
+		const currentUserId = getCookie("id")
 		const formElement = event.currentTarget
 		const formData = new FormData(formElement)
 
@@ -32,9 +33,13 @@ const Edit = ({ id, caseType, data }: Props) => {
 		}
 
 		try {
-			await editAction({ caseType, data: formData, id }).then(() =>
-				window.location.reload()
-			)
+			if (currentUserId)
+				await editAction({
+					caseType,
+					data: formData,
+					id,
+					currentUserId,
+				}).then(() => window.location.reload())
 		} catch (error) {
 			console.error("Error:", error)
 		}

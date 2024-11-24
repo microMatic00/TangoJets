@@ -2,12 +2,18 @@ interface editProps {
 	caseType: string
 	data: FormData
 	id: number
+	currentUserId: string
 }
 
-export async function editAction({ caseType, data, id }: editProps) {
+export async function editAction({
+	caseType,
+	data,
+	id,
+	currentUserId,
+}: editProps) {
 	try {
 		data.append("id", id.toString())
-
+		data.append("currentUserId", currentUserId)
 		const url = `${import.meta.env.PUBLIC_BACKEND_URL}/${caseType}`
 		let body: FormData | string
 

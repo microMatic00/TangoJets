@@ -32,9 +32,11 @@ export async function loginScheduler({ username, password }: Login) {
 		const token = responseToken.token
 		const username = responseUserInfo.username
 		const role = responseUserInfo.role
+		const id = responseUserInfo.id
 		setCookie("authToken", token, 1)
 		setCookie("username", username, 1)
 		setCookie("role", role, 1)
+		setCookie("id", id, 1)
 
 		return responseToken
 	} catch (err) {

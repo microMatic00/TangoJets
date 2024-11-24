@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Toast } from "flowbite-react";
 import { HiCheck } from "react-icons/hi";
 import { addAirship } from "../../../lib/actions/airships/actions"
+import { getCookie } from "../../utils/getCookie"
 
 const AddJetModal: React.FC = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false)
@@ -33,8 +34,9 @@ const AddJetModal: React.FC = () => {
 		}
 
 		try {
-			const response = await addAirship(formData) // Pass formData here
-			console.log("Airship added successfully:", response)
+			const currentUserId = getCookie("id")
+			if (currentUserId) formData.append("currentUserId", currentUserId)
+			const response = await addAirship(formData)
 
 			setShowToast(true)
 			setTimeout(() => {
