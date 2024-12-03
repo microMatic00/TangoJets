@@ -3,7 +3,7 @@ import { c as createComponent, r as renderTemplate, b as renderComponent, f as c
 import 'kleur/colors';
 import { jsxs } from 'react/jsx-runtime';
 import { useState, useEffect } from 'react';
-import { $ as $$Layout } from '../chunks/Layout_BYDi4zWn.mjs';
+import { $ as $$Layout } from '../chunks/Layout_pIfsM7JP.mjs';
 export { renderers } from '../renderers.mjs';
 
 const getCookie = (name) => {

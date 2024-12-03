@@ -1,7 +1,7 @@
 /* empty css                                    */
 import { c as createComponent, r as renderTemplate, a as renderSlot, b as renderComponent, d as renderHead, e as addAttribute, f as createAstro, m as maybeRenderHead } from '../chunks/astro/server_CeIBEc1y.mjs';
 import 'kleur/colors';
-import { $ as $$Sidebar } from '../chunks/Sidebar_DETA5fL9.mjs';
+import { $ as $$Sidebar } from '../chunks/Sidebar_B4sm0le5.mjs';
 import { ToastContainer } from 'react-toastify';
 /* empty css                                      */
 export { renderers } from '../renderers.mjs';

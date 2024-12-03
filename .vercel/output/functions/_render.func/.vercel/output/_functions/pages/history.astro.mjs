@@ -3,7 +3,7 @@ import { c as createComponent, r as renderTemplate, b as renderComponent, m as m
 import 'kleur/colors';
 import { g as getFlights } from '../chunks/actions_Cb2xeMsr.mjs';
 import { T as TableModal } from '../chunks/TableModal_C7VjmBnp.mjs';
-import { $ as $$Layout } from '../chunks/Layout_BYDi4zWn.mjs';
+import { $ as $$Layout } from '../chunks/Layout_pIfsM7JP.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$History = createComponent(async ($$result, $$props, $$slots) => {
