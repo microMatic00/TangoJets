@@ -1,7 +1,7 @@
 async function getFlights() {
   try {
     const response = await fetch(
-      `${"http://localhost:3001"}/flights`
+      `${"http://localhost:3001/"}/flights`
     );
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
@@ -16,7 +16,7 @@ async function getFlights() {
 async function addFlight(flightData) {
   try {
     const response = await fetch(
-      `${"http://localhost:3001"}/flight`,
+      `${"http://localhost:3001/"}/flight`,
       {
         method: "POST",
         headers: {

@@ -6,7 +6,7 @@ import { HiOutlineExclamationCircle } from 'react-icons/hi';
 async function deleteAction({ caseType, id }) {
   try {
     const response = await fetch(
-      `${"http://localhost:3001"}/${caseType}/${id}`,
+      `${"http://localhost:3001/"}/${caseType}/${id}`,
       {
         method: "DELETE",
         headers: {
@@ -110,7 +110,7 @@ const EmptyTableCard = () => {
 async function editAction({ caseType, data, id }) {
   try {
     data.append("id", id.toString());
-    const url = `${"http://localhost:3001"}/${caseType}`;
+    const url = `${"http://localhost:3001/"}/${caseType}`;
     let body;
     if (caseType === "airship") {
       body = data;

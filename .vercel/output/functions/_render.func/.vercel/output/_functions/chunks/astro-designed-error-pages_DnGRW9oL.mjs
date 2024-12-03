@@ -8,7 +8,7 @@ const ACTION_QUERY_PARAMS = {
   actionRedirect: "_astroActionRedirect"
 };
 
-const __vite_import_meta_env__ = {"ASSETS_PREFIX": undefined, "BASE_URL": "/", "DEV": false, "MODE": "production", "PROD": true, "PUBLIC_BACKEND_URL": "http://localhost:3001", "SITE": undefined, "SSR": true};
+const __vite_import_meta_env__ = {"ASSETS_PREFIX": undefined, "BASE_URL": "/", "DEV": false, "MODE": "production", "PROD": true, "PUBLIC_BACKEND_URL": "http://localhost:3001/", "SITE": undefined, "SSR": true};
 const codeToStatusMap = {
   // Implemented from tRPC error code table
   // https://trpc.io/docs/server/error-handling#error-codes
