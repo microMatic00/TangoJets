@@ -1,7 +1,7 @@
 /* empty css                                    */
-import { c as createComponent, r as renderTemplate, b as renderComponent, m as maybeRenderHead } from '../chunks/astro/server_CeIBEc1y.mjs';
+import { c as createComponent, r as renderTemplate, b as renderComponent, m as maybeRenderHead } from '../chunks/astro/server_CR1ForcN.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../chunks/Layout_Ck8WIY7o.mjs';
+import { $ as $$Layout } from '../chunks/Layout_yAdxAx0P.mjs';
 import { T as TableModal } from '../chunks/TableModal_DvlJ6c92.mjs';
 import { jsxs, Fragment, jsx } from 'react/jsx-runtime';
 import { useState } from 'react';
@@ -361,10 +361,10 @@ const ModalAdd = () => {
 
 const $$Client = createComponent(async ($$result, $$props, $$slots) => {
   const data = await getClients();
-  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "Clients" }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<div class="flex flex-col space-y-4"> <div> ${renderComponent($$result2, "ModalAdd", ModalAdd, { "client:load": true, "client:component-hydration": "load", "client:component-path": "T:/tango/TangoJets/TangoJets/src/components/modals/ModalAdd", "client:component-export": "default" })} </div> <div> ${renderComponent($$result2, "TableModal", TableModal, { "info": data, "caseType": "client", "client:load": true, "client:component-hydration": "load", "client:component-path": "T:/tango/TangoJets/TangoJets/src/components/table/TableModal", "client:component-export": "default" })} </div> </div> ` })}`;
-}, "T:/tango/TangoJets/TangoJets/src/pages/Client.astro", void 0);
+  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "Clients" }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<div class="flex flex-col space-y-4"> <div> ${renderComponent($$result2, "ModalAdd", ModalAdd, { "client:load": true, "client:component-hydration": "load", "client:component-path": "C:/Users/Justo/Desktop/TangoJets/src/components/modals/ModalAdd", "client:component-export": "default" })} </div> <div> ${renderComponent($$result2, "TableModal", TableModal, { "info": data, "caseType": "client", "client:load": true, "client:component-hydration": "load", "client:component-path": "C:/Users/Justo/Desktop/TangoJets/src/components/table/TableModal", "client:component-export": "default" })} </div> </div> ` })}`;
+}, "C:/Users/Justo/Desktop/TangoJets/src/pages/Client.astro", void 0);
 
-const $$file = "T:/tango/TangoJets/TangoJets/src/pages/Client.astro";
+const $$file = "C:/Users/Justo/Desktop/TangoJets/src/pages/Client.astro";
 const $$url = "/Client";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

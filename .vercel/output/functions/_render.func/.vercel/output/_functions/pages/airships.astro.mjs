@@ -1,7 +1,7 @@
 /* empty css                                    */
-import { c as createComponent, r as renderTemplate, b as renderComponent, m as maybeRenderHead } from '../chunks/astro/server_CeIBEc1y.mjs';
+import { c as createComponent, r as renderTemplate, b as renderComponent, m as maybeRenderHead } from '../chunks/astro/server_CR1ForcN.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../chunks/Layout_Ck8WIY7o.mjs';
+import { $ as $$Layout } from '../chunks/Layout_yAdxAx0P.mjs';
 import { jsxs, Fragment, jsx } from 'react/jsx-runtime';
 import { useState } from 'react';
 import { Toast } from 'flowbite-react';
@@ -289,10 +289,10 @@ const AddJetModal = () => {
 
 const $$Airships = createComponent(async ($$result, $$props, $$slots) => {
   const data = await getAirships();
-  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "Airships" }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<div class="flex flex-col space-y-4"> <div> ${renderComponent($$result2, "ModalJetAdd", AddJetModal, { "client:load": true, "client:component-hydration": "load", "client:component-path": "T:/tango/TangoJets/TangoJets/src/components/modals/ModalJetAdd", "client:component-export": "default" })} </div> <div> ${renderComponent($$result2, "TableModal", TableModal, { "info": data, "caseType": "airship", "client:load": true, "client:component-hydration": "load", "client:component-path": "T:/tango/TangoJets/TangoJets/src/components/table/TableModal", "client:component-export": "default" })} </div> </div> ` })}`;
-}, "T:/tango/TangoJets/TangoJets/src/pages/Airships.astro", void 0);
+  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "Airships" }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<div class="flex flex-col space-y-4"> <div> ${renderComponent($$result2, "ModalJetAdd", AddJetModal, { "client:load": true, "client:component-hydration": "load", "client:component-path": "C:/Users/Justo/Desktop/TangoJets/src/components/modals/ModalJetAdd", "client:component-export": "default" })} </div> <div> ${renderComponent($$result2, "TableModal", TableModal, { "info": data, "caseType": "airship", "client:load": true, "client:component-hydration": "load", "client:component-path": "C:/Users/Justo/Desktop/TangoJets/src/components/table/TableModal", "client:component-export": "default" })} </div> </div> ` })}`;
+}, "C:/Users/Justo/Desktop/TangoJets/src/pages/Airships.astro", void 0);
 
-const $$file = "T:/tango/TangoJets/TangoJets/src/pages/Airships.astro";
+const $$file = "C:/Users/Justo/Desktop/TangoJets/src/pages/Airships.astro";
 const $$url = "/Airships";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

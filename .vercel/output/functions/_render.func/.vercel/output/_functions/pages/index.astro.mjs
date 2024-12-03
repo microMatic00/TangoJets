@@ -1,5 +1,5 @@
 /* empty css                                    */
-import { c as createComponent, r as renderTemplate, a as renderSlot, d as renderHead, e as addAttribute, f as createAstro, b as renderComponent, m as maybeRenderHead } from '../chunks/astro/server_CeIBEc1y.mjs';
+import { c as createComponent, r as renderTemplate, a as renderSlot, d as renderHead, e as addAttribute, f as createAstro, b as renderComponent, m as maybeRenderHead } from '../chunks/astro/server_CR1ForcN.mjs';
 import 'kleur/colors';
 import { jsxs, jsx } from 'react/jsx-runtime';
 import { useState } from 'react';
@@ -213,13 +213,13 @@ const $$LoginLayout = createComponent(($$result, $$props, $$slots) => {
   Astro2.self = $$LoginLayout;
   const { title } = Astro2.props;
   return renderTemplate(_a || (_a = __template(['<html lang="en"> <head><meta charset="UTF-8"><meta name="description" content="Astro description"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator"', "><title>", "</title>", '</head> <body class="flex h-screen m-0 font-sans bg-gray-50"> <div class="flex-1 flex justify-center items-center p-5 bg-gradient-to-r from-gray-800 to-slate-600 text-gray-800"> ', ' </div> <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"><\/script> </body> </html>'])), addAttribute(Astro2.generator, "content"), title, renderHead(), renderSlot($$result, $$slots["default"]));
-}, "T:/tango/TangoJets/TangoJets/src/layouts/LoginLayout.astro", void 0);
+}, "C:/Users/Justo/Desktop/TangoJets/src/layouts/LoginLayout.astro", void 0);
 
 const $$Index = createComponent(($$result, $$props, $$slots) => {
-  return renderTemplate`${renderComponent($$result, "LoginLayout", $$LoginLayout, { "title": "Login" }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<div class="min-h-screen flex flex-col items-center justify-center"> ${renderComponent($$result2, "ToastContainer", ToastContainer, { "client:load": true, "client:component-hydration": "load", "client:component-path": "react-toastify", "client:component-export": "ToastContainer" })} <div class="bg-white bg-opacity-10 backdrop-blur-md p-8 rounded-lg w-[400px] shadow-lg text-center mx-auto"> ${renderComponent($$result2, "LoginCard", LoginCard, { "client:load": true, "client:component-hydration": "load", "client:component-path": "T:/tango/TangoJets/TangoJets/src/components/cards/LoginCard", "client:component-export": "LoginCard" })} </div> </div> ` })}`;
-}, "T:/tango/TangoJets/TangoJets/src/pages/index.astro", void 0);
+  return renderTemplate`${renderComponent($$result, "LoginLayout", $$LoginLayout, { "title": "Login" }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<div class="min-h-screen flex flex-col items-center justify-center"> ${renderComponent($$result2, "ToastContainer", ToastContainer, { "client:load": true, "client:component-hydration": "load", "client:component-path": "react-toastify", "client:component-export": "ToastContainer" })} <div class="bg-white bg-opacity-10 backdrop-blur-md p-8 rounded-lg w-[400px] shadow-lg text-center mx-auto"> ${renderComponent($$result2, "LoginCard", LoginCard, { "client:load": true, "client:component-hydration": "load", "client:component-path": "C:/Users/Justo/Desktop/TangoJets/src/components/cards/LoginCard", "client:component-export": "LoginCard" })} </div> </div> ` })}`;
+}, "C:/Users/Justo/Desktop/TangoJets/src/pages/index.astro", void 0);
 
-const $$file = "T:/tango/TangoJets/TangoJets/src/pages/index.astro";
+const $$file = "C:/Users/Justo/Desktop/TangoJets/src/pages/index.astro";
 const $$url = "";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

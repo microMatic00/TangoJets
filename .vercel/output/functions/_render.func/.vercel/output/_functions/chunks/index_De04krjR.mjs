@@ -1,10 +1,12 @@
 import { serialize, parse } from 'cookie';
-import { A as AstroError, i as i18nNoLocaleFoundInPath, f as appendForwardSlash, j as joinPaths, R as ResponseSentError, g as MiddlewareNoDataOrNextCalled, h as MiddlewareNotAResponse, G as GetStaticPathsRequired, k as InvalidGetStaticPathsReturn, l as InvalidGetStaticPathsEntry, m as GetStaticPathsExpectedParams, n as GetStaticPathsInvalidRouteParam, t as trimSlashes, P as PageNumberParamNotFound, o as NoMatchingStaticPathFound, p as PrerenderDynamicEndpointPathCollide, q as ReservedSlotName, L as LocalsNotAnObject, r as PrerenderClientAddressNotAvailable, C as ClientAddressNotAvailable, S as StaticClientAddressNotAvailable, s as RewriteWithBodyUsed, u as AstroResponseHeadersReassigned } from './astro/assets-service_C3O-tNLu.mjs';
-import { g as getActionQueryString, d as deserializeActionResult } from './astro-designed-error-pages_Bb6uc-Iw.mjs';
+import { A as AstroError, i as i18nNoLocaleFoundInPath, g as appendForwardSlash, j as joinPaths, R as ResponseSentError, h as MiddlewareNoDataOrNextCalled, k as MiddlewareNotAResponse, G as GetStaticPathsRequired, l as InvalidGetStaticPathsReturn, m as InvalidGetStaticPathsEntry, n as GetStaticPathsExpectedParams, o as GetStaticPathsInvalidRouteParam, t as trimSlashes, P as PageNumberParamNotFound, q as NoMatchingStaticPathFound, u as PrerenderDynamicEndpointPathCollide, v as ReservedSlotName, r as removeTrailingForwardSlash, w as RewriteWithBodyUsed, L as LocalsNotAnObject, x as PrerenderClientAddressNotAvailable, C as ClientAddressNotAvailable, S as StaticClientAddressNotAvailable, y as AstroResponseHeadersReassigned } from './astro/assets-service_DM9cIM1e.mjs';
+import { g as getActionQueryString, a as deserializeActionResult, D as DEFAULT_404_ROUTE } from './astro-designed-error-pages_Chc8T12m.mjs';
 import 'es-module-lexer';
-import { R as REROUTE_DIRECTIVE_HEADER, D as DEFAULT_404_COMPONENT, h as renderSlotToString, i as renderJSX, j as chunkToString, k as isRenderInstruction, l as ROUTE_TYPE_HEADER, n as clientLocalsSymbol, o as clientAddressSymbol, A as ASTRO_VERSION, p as responseSentSymbol$1, q as renderPage, s as REWRITE_DIRECTIVE_HEADER_KEY, t as REWRITE_DIRECTIVE_HEADER_VALUE, u as renderEndpoint } from './astro/server_CeIBEc1y.mjs';
+import { h as REROUTE_DIRECTIVE_HEADER, D as DEFAULT_404_COMPONENT, p as renderSlotToString, q as renderJSX, s as chunkToString, t as isRenderInstruction, u as originPathnameSymbol, R as ROUTE_TYPE_HEADER, k as clientLocalsSymbol, l as clientAddressSymbol, A as ASTRO_VERSION, o as responseSentSymbol$1, v as renderPage, w as REWRITE_DIRECTIVE_HEADER_KEY, x as REWRITE_DIRECTIVE_HEADER_VALUE, y as renderEndpoint } from './astro/server_CR1ForcN.mjs';
 import 'clsx';
 import 'kleur/colors';
+
+const ACTION_API_CONTEXT_SYMBOL = Symbol.for("astro.actionAPIContext");
 
 function hasActionPayload(locals) {
   return "_actionPayload" in locals;
@@ -19,6 +21,7 @@ function createGetActionResult(locals) {
 }
 function createCallAction(context) {
   return (baseAction, input) => {
+    Reflect.set(context, ACTION_API_CONTEXT_SYMBOL, true);
     const action = baseAction.bind(context);
     return action(input);
   };
@@ -286,7 +289,7 @@ function computePreferredLocaleList(request, locales) {
   }
   return result;
 }
-function computeCurrentLocale(pathname, locales) {
+function computeCurrentLocale(pathname, locales, defaultLocale) {
   for (const segment of pathname.split("/")) {
     for (const locale of locales) {
       if (typeof locale === "string") {
@@ -304,6 +307,17 @@ function computeCurrentLocale(pathname, locales) {
             }
           }
         }
+      }
+    }
+  }
+  for (const locale of locales) {
+    if (typeof locale === "string") {
+      if (locale === defaultLocale) {
+        return locale;
+      }
+    } else {
+      if (locale.path === defaultLocale) {
+        return locale.codes.at(0);
       }
     }
   }
@@ -945,9 +959,88 @@ class Slots {
   }
 }
 
+function matchRoute(pathname, manifest) {
+  const decodedPathname = decodeURI(pathname);
+  return manifest.routes.find((route) => {
+    return route.pattern.test(decodedPathname) || route.fallbackRoutes.some((fallbackRoute) => fallbackRoute.pattern.test(decodedPathname));
+  });
+}
+function isRoute404or500(route) {
+  return route.pattern.test("/404") || route.pattern.test("/500");
+}
+
+function findRouteToRewrite({
+  payload,
+  routes,
+  request,
+  trailingSlash,
+  buildFormat,
+  base
+}) {
+  let newUrl = void 0;
+  if (payload instanceof URL) {
+    newUrl = payload;
+  } else if (payload instanceof Request) {
+    newUrl = new URL(payload.url);
+  } else {
+    newUrl = new URL(payload, new URL(request.url).origin);
+  }
+  let pathname = newUrl.pathname;
+  if (base !== "/" && newUrl.pathname.startsWith(base)) {
+    pathname = shouldAppendForwardSlash(trailingSlash, buildFormat) ? appendForwardSlash(newUrl.pathname) : removeTrailingForwardSlash(newUrl.pathname);
+    pathname = pathname.slice(base.length);
+  }
+  let foundRoute;
+  for (const route of routes) {
+    if (route.pattern.test(decodeURI(pathname))) {
+      foundRoute = route;
+      break;
+    }
+  }
+  if (foundRoute) {
+    return {
+      routeData: foundRoute,
+      newUrl,
+      pathname
+    };
+  } else {
+    const custom404 = routes.find((route) => route.route === "/404");
+    if (custom404) {
+      return { routeData: custom404, newUrl, pathname };
+    } else {
+      return { routeData: DEFAULT_404_ROUTE, newUrl, pathname };
+    }
+  }
+}
+function copyRequest(newUrl, oldRequest) {
+  if (oldRequest.bodyUsed) {
+    throw new AstroError(RewriteWithBodyUsed);
+  }
+  return new Request(newUrl, {
+    method: oldRequest.method,
+    headers: oldRequest.headers,
+    body: oldRequest.body,
+    referrer: oldRequest.referrer,
+    referrerPolicy: oldRequest.referrerPolicy,
+    mode: oldRequest.mode,
+    credentials: oldRequest.credentials,
+    cache: oldRequest.cache,
+    redirect: oldRequest.redirect,
+    integrity: oldRequest.integrity,
+    signal: oldRequest.signal,
+    keepalive: oldRequest.keepalive,
+    // https://fetch.spec.whatwg.org/#dom-request-duplex
+    // @ts-expect-error It isn't part of the types, but undici accepts it and it allows to carry over the body to a new request
+    duplex: "half"
+  });
+}
+function setOriginPathname(request, pathname) {
+  Reflect.set(request, originPathnameSymbol, encodeURIComponent(pathname));
+}
+
 const apiContextRoutesSymbol = Symbol.for("context.routes");
 class RenderContext {
-  constructor(pipeline, locals, middleware, pathname, request, routeData, status, cookies = new AstroCookies(request), params = getParams(routeData, pathname), url = new URL(request.url), props = {}) {
+  constructor(pipeline, locals, middleware, pathname, request, routeData, status, cookies = new AstroCookies(request), params = getParams(routeData, pathname), url = new URL(request.url), props = {}, partial = void 0) {
     this.pipeline = pipeline;
     this.locals = locals;
     this.middleware = middleware;
@@ -959,6 +1052,7 @@ class RenderContext {
     this.params = params;
     this.url = url;
     this.props = props;
+    this.partial = partial;
   }
   /**
    * A flag that tells the render content if the rewriting was triggered
@@ -976,9 +1070,11 @@ class RenderContext {
     request,
     routeData,
     status = 200,
-    props
+    props,
+    partial = void 0
   }) {
     const pipelineMiddleware = await pipeline.getMiddleware();
+    setOriginPathname(request, pathname);
     return new RenderContext(
       pipeline,
       locals,
@@ -990,7 +1086,8 @@ class RenderContext {
       void 0,
       void 0,
       void 0,
-      props
+      props,
+      partial
     );
   }
   /**
@@ -1039,7 +1136,7 @@ class RenderContext {
         if (payload instanceof Request) {
           this.request = payload;
         } else {
-          this.request = this.#copyRequest(newUrl, this.request);
+          this.request = copyRequest(newUrl, this.request);
         }
         this.isRewriting = true;
         this.url = new URL(this.request.url);
@@ -1123,7 +1220,7 @@ class RenderContext {
     if (reroutePayload instanceof Request) {
       this.request = reroutePayload;
     } else {
-      this.request = this.#copyRequest(newUrl, this.request);
+      this.request = copyRequest(newUrl, this.request);
     }
     this.url = new URL(this.request.url);
     this.cookies = new AstroCookies(this.request);
@@ -1180,7 +1277,7 @@ class RenderContext {
     const { links, scripts, styles } = await pipeline.headElements(routeData);
     const componentMetadata = await pipeline.componentMetadata(routeData) ?? manifest.componentMetadata;
     const headers = new Headers({ "Content-Type": "text/html" });
-    const partial = Boolean(mod.partial);
+    const partial = typeof this.partial === "boolean" ? this.partial : Boolean(mod.partial);
     const response = {
       status,
       statusText: "OK",
@@ -1349,7 +1446,14 @@ class RenderContext {
     if (!i18n) return;
     const { defaultLocale, locales, strategy } = i18n;
     const fallbackTo = strategy === "pathname-prefix-other-locales" || strategy === "domains-prefix-other-locales" ? defaultLocale : void 0;
-    return this.#currentLocale ??= computeCurrentLocale(routeData.route, locales) ?? computeCurrentLocale(url.pathname, locales) ?? fallbackTo;
+    if (this.#currentLocale) {
+      return this.#currentLocale;
+    }
+    let computedLocale;
+    const pathname = routeData.pathname && !isRoute404or500(routeData) ? routeData.pathname : url.pathname;
+    computedLocale = computeCurrentLocale(pathname, locales, defaultLocale);
+    this.#currentLocale = computedLocale ?? fallbackTo;
+    return this.#currentLocale;
   }
   #preferredLocale;
   computePreferredLocale() {
@@ -1368,34 +1472,6 @@ class RenderContext {
     } = this;
     if (!i18n) return;
     return this.#preferredLocaleList ??= computePreferredLocaleList(request, i18n.locales);
-  }
-  /**
-   * Utility function that creates a new `Request` with a new URL from an old `Request`.
-   *
-   * @param newUrl The new `URL`
-   * @param oldRequest The old `Request`
-   */
-  #copyRequest(newUrl, oldRequest) {
-    if (oldRequest.bodyUsed) {
-      throw new AstroError(RewriteWithBodyUsed);
-    }
-    return new Request(newUrl, {
-      method: oldRequest.method,
-      headers: oldRequest.headers,
-      body: oldRequest.body,
-      referrer: oldRequest.referrer,
-      referrerPolicy: oldRequest.referrerPolicy,
-      mode: oldRequest.mode,
-      credentials: oldRequest.credentials,
-      cache: oldRequest.cache,
-      redirect: oldRequest.redirect,
-      integrity: oldRequest.integrity,
-      signal: oldRequest.signal,
-      keepalive: oldRequest.keepalive,
-      // https://fetch.spec.whatwg.org/#dom-request-duplex
-      // @ts-expect-error It isn't part of the types, but undici accepts it and it allows to carry over the body to a new request
-      duplex: "half"
-    });
   }
 }
 
@@ -1451,4 +1527,4 @@ function defineMiddleware(fn) {
   return fn;
 }
 
-export { RouteCache as R, requestIs404Or500 as a, redirectToFallback as b, normalizeTheLocale as c, defineMiddleware as d, redirectToDefaultLocale as e, shouldAppendForwardSlash as f, RenderContext as g, getSetCookiesFromResponse as h, notFound as n, requestHasLocale as r, sequence as s };
+export { RouteCache as R, requestIs404Or500 as a, redirectToFallback as b, normalizeTheLocale as c, defineMiddleware as d, redirectToDefaultLocale as e, findRouteToRewrite as f, RenderContext as g, getSetCookiesFromResponse as h, matchRoute as m, notFound as n, requestHasLocale as r, sequence as s };

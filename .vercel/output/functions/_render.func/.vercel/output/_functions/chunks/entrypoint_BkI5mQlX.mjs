@@ -1,10 +1,11 @@
-import { l as ROUTE_TYPE_HEADER, v as decryptString, w as createSlotValueFromString, r as renderTemplate, b as renderComponent, D as DEFAULT_404_COMPONENT, n as clientLocalsSymbol, o as clientAddressSymbol$1, x as REROUTABLE_STATUS_CODES, R as REROUTE_DIRECTIVE_HEADER, p as responseSentSymbol } from './astro/server_CeIBEc1y.mjs';
-import { r as requestHasLocale, a as requestIs404Or500, n as notFound, b as redirectToFallback, c as normalizeTheLocale, e as redirectToDefaultLocale, d as defineMiddleware, R as RouteCache, s as sequence, f as shouldAppendForwardSlash, g as RenderContext, h as getSetCookiesFromResponse } from './index_VhfJ30a2.mjs';
+import { Http2ServerResponse } from 'node:http2';
+import { R as ROUTE_TYPE_HEADER, h as REROUTE_DIRECTIVE_HEADER, i as decryptString, j as createSlotValueFromString, r as renderTemplate, b as renderComponent, D as DEFAULT_404_COMPONENT, k as clientLocalsSymbol, l as clientAddressSymbol, n as REROUTABLE_STATUS_CODES, o as responseSentSymbol } from './astro/server_CR1ForcN.mjs';
+import { r as requestHasLocale, a as requestIs404Or500, n as notFound, b as redirectToFallback, c as normalizeTheLocale, e as redirectToDefaultLocale, d as defineMiddleware, R as RouteCache, s as sequence, f as findRouteToRewrite, m as matchRoute, g as RenderContext, h as getSetCookiesFromResponse } from './index_De04krjR.mjs';
 import 'cookie';
-import { v as fileExtension, j as joinPaths, w as slash, x as prependForwardSlash, f as appendForwardSlash, y as removeTrailingForwardSlash, A as AstroError, L as LocalsNotAnObject } from './astro/assets-service_C3O-tNLu.mjs';
+import { f as fileExtension, j as joinPaths, s as slash, p as prependForwardSlash, r as removeTrailingForwardSlash, g as appendForwardSlash, A as AstroError, L as LocalsNotAnObject } from './astro/assets-service_DM9cIM1e.mjs';
 import { bold, red, yellow, dim, blue } from 'kleur/colors';
-import { N as NOOP_MIDDLEWARE_FN } from './noop-middleware_CT3jP1RJ.mjs';
-import { e as ensure404Route, a as default404Instance, D as DEFAULT_404_ROUTE } from './astro-designed-error-pages_Bb6uc-Iw.mjs';
+import { N as NOOP_MIDDLEWARE_FN } from './noop-middleware_BmZsI-nm.mjs';
+import { e as ensure404Route, d as default404Instance, D as DEFAULT_404_ROUTE } from './astro-designed-error-pages_Chc8T12m.mjs';
 import 'es-module-lexer';
 import 'fast-glob';
 import nodePath from 'node:path';
@@ -52,6 +53,10 @@ function createI18nMiddleware(i18n, base, trailingSlash, format) {
   return async (context, next) => {
     const response = await next();
     const type = response.headers.get(ROUTE_TYPE_HEADER);
+    const isReroute = response.headers.get(REROUTE_DIRECTIVE_HEADER);
+    if (isReroute === "no" && typeof i18n.fallback === "undefined") {
+      return response;
+    }
     if (type !== "page" && type !== "fallback") {
       return response;
     }
@@ -205,7 +210,7 @@ function ensureServerIslandRoute(config, routeManifest) {
   if (routeManifest.routes.some((route) => route.route === "/_server-islands/[name]")) {
     return;
   }
-  routeManifest.routes.push(getServerIslandRouteData(config));
+  routeManifest.routes.unshift(getServerIslandRouteData(config));
 }
 function createEndpoint(manifest) {
   const page = async (result) => {
@@ -271,7 +276,7 @@ function createDefaultRoutes(manifest) {
 }
 
 class Pipeline {
-  constructor(logger, manifest, mode, renderers, resolve, serverLike, streaming, adapterName = manifest.adapterName, clientDirectives = manifest.clientDirectives, inlinedScripts = manifest.inlinedScripts, compressHTML = manifest.compressHTML, i18n = manifest.i18n, middleware = manifest.middleware, routeCache = new RouteCache(logger, mode), site = manifest.site ? new URL(manifest.site) : void 0, callSetGetEnv = true, defaultRoutes = createDefaultRoutes(manifest)) {
+  constructor(logger, manifest, mode, renderers, resolve, serverLike, streaming, adapterName = manifest.adapterName, clientDirectives = manifest.clientDirectives, inlinedScripts = manifest.inlinedScripts, compressHTML = manifest.compressHTML, i18n = manifest.i18n, middleware = manifest.middleware, routeCache = new RouteCache(logger, mode), site = manifest.site ? new URL(manifest.site) : void 0, defaultRoutes = createDefaultRoutes(manifest)) {
     this.logger = logger;
     this.manifest = manifest;
     this.mode = mode;
@@ -287,7 +292,6 @@ class Pipeline {
     this.middleware = middleware;
     this.routeCache = routeCache;
     this.site = site;
-    this.callSetGetEnv = callSetGetEnv;
     this.defaultRoutes = defaultRoutes;
     this.internalMiddleware = [];
     if (i18n?.strategy !== "manual") {
@@ -295,7 +299,6 @@ class Pipeline {
         createI18nMiddleware(i18n, manifest.base, manifest.trailingSlash, manifest.buildFormat)
       );
     }
-    if (callSetGetEnv && manifest.experimentalEnvGetSecretEnabled) ;
   }
   internalMiddleware;
   resolvedMiddleware = void 0;
@@ -529,57 +532,6 @@ function createModuleScriptElementWithSrc(src, base, assetsPrefix) {
   };
 }
 
-function matchRoute(pathname, manifest) {
-  const decodedPathname = decodeURI(pathname);
-  return manifest.routes.find((route) => {
-    return route.pattern.test(decodedPathname) || route.fallbackRoutes.some((fallbackRoute) => fallbackRoute.pattern.test(decodedPathname));
-  });
-}
-
-function findRouteToRewrite({
-  payload,
-  routes,
-  request,
-  trailingSlash,
-  buildFormat,
-  base
-}) {
-  let newUrl = void 0;
-  if (payload instanceof URL) {
-    newUrl = payload;
-  } else if (payload instanceof Request) {
-    newUrl = new URL(payload.url);
-  } else {
-    newUrl = new URL(payload, new URL(request.url).origin);
-  }
-  let pathname = newUrl.pathname;
-  if (base !== "/" && newUrl.pathname.startsWith(base)) {
-    pathname = shouldAppendForwardSlash(trailingSlash, buildFormat) ? appendForwardSlash(newUrl.pathname) : removeTrailingForwardSlash(newUrl.pathname);
-    pathname = pathname.slice(base.length);
-  }
-  let foundRoute;
-  for (const route of routes) {
-    if (route.pattern.test(decodeURI(pathname))) {
-      foundRoute = route;
-      break;
-    }
-  }
-  if (foundRoute) {
-    return {
-      routeData: foundRoute,
-      newUrl,
-      pathname
-    };
-  } else {
-    const custom404 = routes.find((route) => route.route === "/404");
-    if (custom404) {
-      return { routeData: custom404, newUrl, pathname };
-    } else {
-      return { routeData: DEFAULT_404_ROUTE, newUrl, pathname };
-    }
-  }
-}
-
 class AppPipeline extends Pipeline {
   #manifestData;
   static create(manifestData, {
@@ -608,7 +560,6 @@ class AppPipeline extends Pipeline {
       void 0,
       void 0,
       void 0,
-      false,
       defaultRoutes
     );
     pipeline.#manifestData = manifestData;
@@ -726,14 +677,10 @@ class App {
           throw new Error(`Unable to resolve [${specifier}]`);
         }
         const bundlePath = this.#manifest.entryModules[specifier];
-        switch (true) {
-          case bundlePath.startsWith("data:"):
-          case bundlePath.length === 0: {
-            return bundlePath;
-          }
-          default: {
-            return createAssetLink(bundlePath, this.#manifest.base, this.#manifest.assetsPrefix);
-          }
+        if (bundlePath.startsWith("data:") || bundlePath.length === 0) {
+          return bundlePath;
+        } else {
+          return createAssetLink(bundlePath, this.#manifest.base, this.#manifest.assetsPrefix);
         }
       },
       serverLike: true,
@@ -854,7 +801,7 @@ class App {
       Reflect.set(request, clientLocalsSymbol, locals);
     }
     if (clientAddress) {
-      Reflect.set(request, clientAddressSymbol$1, clientAddress);
+      Reflect.set(request, clientAddressSymbol, clientAddress);
     }
     if (!routeData) {
       routeData = this.match(request);
@@ -1059,7 +1006,6 @@ function apply() {
   }
 }
 
-const clientAddressSymbol = Symbol.for("astro.clientAddress");
 class NodeApp extends App {
   match(req) {
     if (!(req instanceof Request)) {
@@ -1089,11 +1035,17 @@ class NodeApp extends App {
    * ```
    */
   static createRequest(req, { skipBody = false } = {}) {
-    const protocol = req.headers["x-forwarded-proto"] ?? ("encrypted" in req.socket && req.socket.encrypted ? "https" : "http");
-    const hostname = req.headers["x-forwarded-host"] ?? req.headers.host ?? req.headers[":authority"];
-    const port = req.headers["x-forwarded-port"];
-    const portInHostname = typeof hostname === "string" && typeof port === "string" && hostname.endsWith(port);
-    const hostnamePort = portInHostname ? hostname : hostname + (port ? `:${port}` : "");
+    const isEncrypted = "encrypted" in req.socket && req.socket.encrypted;
+    const getFirstForwardedValue = (multiValueHeader) => {
+      return multiValueHeader?.toString()?.split(",").map((e) => e.trim())?.[0];
+    };
+    const forwardedProtocol = getFirstForwardedValue(req.headers["x-forwarded-proto"]);
+    const protocol = forwardedProtocol ?? (isEncrypted ? "https" : "http");
+    const forwardedHostname = getFirstForwardedValue(req.headers["x-forwarded-host"]);
+    const hostname = forwardedHostname ?? req.headers.host ?? req.headers[":authority"];
+    const port = getFirstForwardedValue(req.headers["x-forwarded-port"]);
+    const portInHostname = typeof hostname === "string" && /:\d+$/.test(hostname);
+    const hostnamePort = portInHostname ? hostname : `${hostname}${port ? `:${port}` : ""}`;
     const url = `${protocol}://${hostnamePort}${req.url}`;
     const options = {
       method: req.method || "GET",
@@ -1104,11 +1056,10 @@ class NodeApp extends App {
       Object.assign(options, makeRequestBody(req));
     }
     const request = new Request(url, options);
-    const clientIp = req.headers["x-forwarded-for"];
+    const forwardedClientIp = getFirstForwardedValue(req.headers["x-forwarded-for"]);
+    const clientIp = forwardedClientIp || req.socket?.remoteAddress;
     if (clientIp) {
       Reflect.set(request, clientAddressSymbol, clientIp);
-    } else if (req.socket?.remoteAddress) {
-      Reflect.set(request, clientAddressSymbol, req.socket.remoteAddress);
     }
     return request;
   }
@@ -1129,7 +1080,9 @@ class NodeApp extends App {
    */
   static async writeResponse(source, destination) {
     const { status, headers, body, statusText } = source;
-    destination.statusMessage = statusText;
+    if (!(destination instanceof Http2ServerResponse)) {
+      destination.statusMessage = statusText;
+    }
     destination.writeHead(status, createOutgoingHttpHeaders(headers));
     if (!body) return destination.end();
     try {
@@ -1148,8 +1101,10 @@ class NodeApp extends App {
         result = await reader.read();
       }
       destination.end();
-    } catch {
-      destination.end("Internal server error");
+    } catch (err) {
+      destination.write("Internal server error", () => {
+        err instanceof Error ? destination.destroy(err) : destination.destroy();
+      });
     }
   }
 }

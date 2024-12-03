@@ -1,5 +1,5 @@
 /* empty css                                    */
-import { c as createComponent, r as renderTemplate, b as renderComponent, m as maybeRenderHead } from '../chunks/astro/server_CeIBEc1y.mjs';
+import { c as createComponent, r as renderTemplate, b as renderComponent, m as maybeRenderHead } from '../chunks/astro/server_CR1ForcN.mjs';
 import 'kleur/colors';
 import { a as addFlight, g as getFlights } from '../chunks/actions_CQImGA5H.mjs';
 import { jsxs, Fragment, jsx } from 'react/jsx-runtime';
@@ -7,7 +7,7 @@ import { useState } from 'react';
 /* empty css                                  */
 import { Toast } from 'flowbite-react';
 import { HiCheck } from 'react-icons/hi';
-import { $ as $$Layout } from '../chunks/Layout_Ck8WIY7o.mjs';
+import { $ as $$Layout } from '../chunks/Layout_yAdxAx0P.mjs';
 export { renderers } from '../renderers.mjs';
 
 const ModalFlightAdd = () => {
@@ -266,10 +266,10 @@ const $$Flights = createComponent(async ($$result, $$props, $$slots) => {
     const currentTime = /* @__PURE__ */ new Date();
     return currentTime < launchTime;
   });
-  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "Flights" }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<div class="flex flex-col space-y-4"> <div> ${renderComponent($$result2, "ModalFlightAdd", ModalFlightAdd, { "client:load": true, "client:component-hydration": "load", "client:component-path": "T:/tango/TangoJets/TangoJets/src/components/modals/ModalFlightAdd", "client:component-export": "default" })} </div> <div> ${renderComponent($$result2, "TableModal", null, { "info": filteredData, "caseType": "flight", "client:only": "react", "client:component-hydration": "only", "client:component-path": "T:/tango/TangoJets/TangoJets/src/components/table/TableModal", "client:component-export": "default" })} </div> </div> ` })}`;
-}, "T:/tango/TangoJets/TangoJets/src/pages/Flights.astro", void 0);
+  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "Flights" }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<div class="flex flex-col space-y-4"> <div> ${renderComponent($$result2, "ModalFlightAdd", ModalFlightAdd, { "client:load": true, "client:component-hydration": "load", "client:component-path": "C:/Users/Justo/Desktop/TangoJets/src/components/modals/ModalFlightAdd", "client:component-export": "default" })} </div> <div> ${renderComponent($$result2, "TableModal", null, { "info": filteredData, "caseType": "flight", "client:only": "react", "client:component-hydration": "only", "client:component-path": "C:/Users/Justo/Desktop/TangoJets/src/components/table/TableModal", "client:component-export": "default" })} </div> </div> ` })}`;
+}, "C:/Users/Justo/Desktop/TangoJets/src/pages/Flights.astro", void 0);
 
-const $$file = "T:/tango/TangoJets/TangoJets/src/pages/Flights.astro";
+const $$file = "C:/Users/Justo/Desktop/TangoJets/src/pages/Flights.astro";
 const $$url = "/Flights";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
