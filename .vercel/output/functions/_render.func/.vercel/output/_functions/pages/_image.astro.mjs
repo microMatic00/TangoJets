@@ -1,5 +1,5 @@
-import { A as AstroError, z as NoImageMetadata, F as FailedToFetchRemoteImageDimensions, B as ExpectedImageOptions, D as ExpectedImage, H as ExpectedNotESMImage, J as resolveSrc, K as isRemoteImage, Q as isESMImportedImage, T as isLocalService, U as DEFAULT_HASH_PROPS, V as InvalidImageService, W as ImageMissingAlt, X as isRemotePath, Y as isRemoteAllowed } from '../chunks/astro/assets-service_C3O-tNLu.mjs';
-import { c as createComponent, r as renderTemplate, m as maybeRenderHead, e as addAttribute, y as spreadAttributes, f as createAstro } from '../chunks/astro/server_CeIBEc1y.mjs';
+import { A as AstroError, z as NoImageMetadata, F as FailedToFetchRemoteImageDimensions, B as ExpectedImageOptions, D as ExpectedImage, H as ExpectedNotESMImage, J as resolveSrc, K as isRemoteImage, Q as isRemotePath, T as isESMImportedImage, U as isLocalService, V as DEFAULT_HASH_PROPS, W as InvalidImageService, X as ImageMissingAlt, Y as isRemoteAllowed } from '../chunks/astro/assets-service_DM9cIM1e.mjs';
+import { c as createComponent, r as renderTemplate, m as maybeRenderHead, e as addAttribute, z as spreadAttributes, f as createAstro } from '../chunks/astro/server_CR1ForcN.mjs';
 import 'clsx';
 import * as mime from 'mrmime';
 export { renderers } from '../renderers.mjs';
@@ -356,7 +356,7 @@ const JPG = {
     while (input.length) {
       const i = readUInt16BE(input, 0);
       if (input[i] !== 255) {
-        input = input.slice(1);
+        input = input.slice(i);
         continue;
       }
       if (isEXIF(input)) {
@@ -842,7 +842,7 @@ async function getConfiguredImageService() {
   if (!globalThis?.astroAsset?.imageService) {
     const { default: service } = await import(
       // @ts-expect-error
-      '../chunks/astro/assets-service_C3O-tNLu.mjs'
+      '../chunks/astro/assets-service_DM9cIM1e.mjs'
     ).then(n => n.Z).catch((e) => {
       const error = new AstroError(InvalidImageService);
       error.cause = e;
@@ -879,7 +879,7 @@ async function getImage$1(options, imageConfig) {
     ...options,
     src: await resolveSrc(options.src)
   };
-  if (options.inferSize && isRemoteImage(resolvedOptions.src)) {
+  if (options.inferSize && isRemoteImage(resolvedOptions.src) && isRemotePath(resolvedOptions.src)) {
     const result = await inferRemoteSize(resolvedOptions.src);
     resolvedOptions.width ??= result.width;
     resolvedOptions.height ??= result.height;

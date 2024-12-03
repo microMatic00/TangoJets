@@ -1,9 +1,9 @@
 /* empty css                                    */
-import { c as createComponent, r as renderTemplate, b as renderComponent, f as createAstro, m as maybeRenderHead } from '../chunks/astro/server_CeIBEc1y.mjs';
+import { c as createComponent, r as renderTemplate, b as renderComponent, f as createAstro, m as maybeRenderHead } from '../chunks/astro/server_CR1ForcN.mjs';
 import 'kleur/colors';
 import { jsxs } from 'react/jsx-runtime';
 import { useState, useEffect } from 'react';
-import { $ as $$Layout } from '../chunks/Layout_Ck8WIY7o.mjs';
+import { $ as $$Layout } from '../chunks/Layout_wa7KmlSV.mjs';
 export { renderers } from '../renderers.mjs';
 
 const getCookie = (name) => {

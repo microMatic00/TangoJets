@@ -1,6 +1,6 @@
-import { c as createComponent, r as renderTemplate, a as renderSlot, b as renderComponent, d as renderHead, e as addAttribute, f as createAstro } from './astro/server_CeIBEc1y.mjs';
+import { c as createComponent, r as renderTemplate, a as renderSlot, b as renderComponent, d as renderHead, e as addAttribute, f as createAstro } from './astro/server_CR1ForcN.mjs';
 import 'kleur/colors';
-import { $ as $$Sidebar } from './Sidebar_BYV03XkU.mjs';
+import { $ as $$Sidebar } from './Sidebar_D-djW4vb.mjs';
 
 var __freeze = Object.freeze;
 var __defProp = Object.defineProperty;
