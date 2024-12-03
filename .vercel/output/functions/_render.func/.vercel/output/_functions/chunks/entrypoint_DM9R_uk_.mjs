@@ -1,10 +1,10 @@
-import { l as ROUTE_TYPE_HEADER, v as decryptString, w as createSlotValueFromString, r as renderTemplate, b as renderComponent, D as DEFAULT_404_COMPONENT, n as clientLocalsSymbol, o as clientAddressSymbol$1, x as REROUTABLE_STATUS_CODES, R as REROUTE_DIRECTIVE_HEADER, p as responseSentSymbol } from './astro/server_CeIBEc1y.mjs';
-import { r as requestHasLocale, a as requestIs404Or500, n as notFound, b as redirectToFallback, c as normalizeTheLocale, e as redirectToDefaultLocale, d as defineMiddleware, R as RouteCache, s as sequence, f as shouldAppendForwardSlash, g as RenderContext, h as getSetCookiesFromResponse } from './index_DoYQ-zGz.mjs';
+import { l as ROUTE_TYPE_HEADER, v as decryptString, w as createSlotValueFromString, r as renderTemplate, f as renderComponent, D as DEFAULT_404_COMPONENT, n as clientLocalsSymbol, o as clientAddressSymbol$1, x as REROUTABLE_STATUS_CODES, R as REROUTE_DIRECTIVE_HEADER, p as responseSentSymbol } from './astro/server_Dtd7Q2rV.mjs';
+import { r as requestHasLocale, a as requestIs404Or500, n as notFound, b as redirectToFallback, c as normalizeTheLocale, e as redirectToDefaultLocale, d as defineMiddleware, R as RouteCache, s as sequence, f as shouldAppendForwardSlash, g as RenderContext, h as getSetCookiesFromResponse } from './index_rIZ6l9-k.mjs';
 import 'cookie';
 import { v as fileExtension, j as joinPaths, w as slash, x as prependForwardSlash, f as appendForwardSlash, y as removeTrailingForwardSlash, A as AstroError, L as LocalsNotAnObject } from './astro/assets-service_C3O-tNLu.mjs';
 import { bold, red, yellow, dim, blue } from 'kleur/colors';
 import { N as NOOP_MIDDLEWARE_FN } from './noop-middleware_CT3jP1RJ.mjs';
-import { e as ensure404Route, a as default404Instance, D as DEFAULT_404_ROUTE } from './astro-designed-error-pages_DnGRW9oL.mjs';
+import { e as ensure404Route, a as default404Instance, D as DEFAULT_404_ROUTE } from './astro-designed-error-pages_Cio4hRbd.mjs';
 import 'es-module-lexer';
 import 'fast-glob';
 import nodePath from 'node:path';

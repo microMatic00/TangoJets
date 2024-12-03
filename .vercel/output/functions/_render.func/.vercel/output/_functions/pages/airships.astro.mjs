@@ -1,7 +1,7 @@
 /* empty css                                    */
-import { c as createComponent, r as renderTemplate, b as renderComponent, m as maybeRenderHead } from '../chunks/astro/server_CeIBEc1y.mjs';
+import { c as createComponent, r as renderTemplate, f as renderComponent, m as maybeRenderHead } from '../chunks/astro/server_Dtd7Q2rV.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../chunks/Layout_CaGrn1y0.mjs';
+import { $ as $$Layout } from '../chunks/Layout_CCgmUkvO.mjs';
 import { jsxs, Fragment, jsx } from 'react/jsx-runtime';
 import { useState } from 'react';
 import { Toast } from 'flowbite-react';
