@@ -1,6 +1,6 @@
 import { renderers } from './renderers.mjs';
-import { c as createExports } from './chunks/entrypoint_DM9R_uk_.mjs';
-import { manifest } from './manifest_CEfQzIha.mjs';
+import { c as createExports } from './chunks/entrypoint_DIIbR_Bx.mjs';
+import { manifest } from './manifest_MuLjdC87.mjs';
 import './_astro-internal_middleware.mjs';
 
 const _page0 = () => import('./pages/_image.astro.mjs');
@@ -30,7 +30,7 @@ const _manifest = Object.assign(manifest, {
     middleware: () => import('./_astro-internal_middleware.mjs')
 });
 const _args = {
-    "middlewareSecret": "3d0f959c-bce9-4ca4-ae13-b10f9e01b6e1",
+    "middlewareSecret": "a201b037-d8ef-4a37-8654-94a90c5567e9",
     "skewProtection": false
 };
 const _exports = createExports(_manifest, _args);

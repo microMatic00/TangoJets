@@ -1,8 +1,8 @@
 import { serialize, parse } from 'cookie';
 import { A as AstroError, i as i18nNoLocaleFoundInPath, f as appendForwardSlash, j as joinPaths, R as ResponseSentError, g as MiddlewareNoDataOrNextCalled, h as MiddlewareNotAResponse, G as GetStaticPathsRequired, k as InvalidGetStaticPathsReturn, l as InvalidGetStaticPathsEntry, m as GetStaticPathsExpectedParams, n as GetStaticPathsInvalidRouteParam, t as trimSlashes, P as PageNumberParamNotFound, o as NoMatchingStaticPathFound, p as PrerenderDynamicEndpointPathCollide, q as ReservedSlotName, L as LocalsNotAnObject, r as PrerenderClientAddressNotAvailable, C as ClientAddressNotAvailable, S as StaticClientAddressNotAvailable, s as RewriteWithBodyUsed, u as AstroResponseHeadersReassigned } from './astro/assets-service_C3O-tNLu.mjs';
-import { g as getActionQueryString, d as deserializeActionResult } from './astro-designed-error-pages_Cio4hRbd.mjs';
+import { g as getActionQueryString, d as deserializeActionResult } from './astro-designed-error-pages_DnGRW9oL.mjs';
 import 'es-module-lexer';
-import { R as REROUTE_DIRECTIVE_HEADER, D as DEFAULT_404_COMPONENT, h as renderSlotToString, i as renderJSX, j as chunkToString, k as isRenderInstruction, l as ROUTE_TYPE_HEADER, n as clientLocalsSymbol, o as clientAddressSymbol, A as ASTRO_VERSION, p as responseSentSymbol$1, q as renderPage, s as REWRITE_DIRECTIVE_HEADER_KEY, t as REWRITE_DIRECTIVE_HEADER_VALUE, u as renderEndpoint } from './astro/server_Dtd7Q2rV.mjs';
+import { R as REROUTE_DIRECTIVE_HEADER, D as DEFAULT_404_COMPONENT, h as renderSlotToString, i as renderJSX, j as chunkToString, k as isRenderInstruction, l as ROUTE_TYPE_HEADER, n as clientLocalsSymbol, o as clientAddressSymbol, A as ASTRO_VERSION, p as responseSentSymbol$1, q as renderPage, s as REWRITE_DIRECTIVE_HEADER_KEY, t as REWRITE_DIRECTIVE_HEADER_VALUE, u as renderEndpoint } from './astro/server_CeIBEc1y.mjs';
 import 'clsx';
 import 'kleur/colors';
 

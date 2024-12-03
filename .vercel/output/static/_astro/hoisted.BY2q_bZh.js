@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",function(){const e=document.querySelector('[data-drawer-toggle="sidebar-multi-level-sidebar"]'),t=document.getElementById("sidebar-multi-level-sidebar");e&&t&&e.addEventListener("click",()=>{t.classList.toggle("-translate-x-full")})});
