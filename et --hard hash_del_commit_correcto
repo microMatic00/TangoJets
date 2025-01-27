@@ -1,0 +1,245 @@
+[33mcommit 1162c85c96cfecf6234c600c45231de87e608bca[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: NicoDeca <85821406+NicoDeca@users.noreply.github.com>
+Date:   Tue Dec 3 18:49:27 2024 -0300
+
+    reparo2?
+
+[33mcommit 5ef11e5fcbfe26106b5e277ca5160bba58ea6d36[m
+Merge: fd1c6c6 4dc03ca
+Author: Nicodecaa <116776263+microMatic00@users.noreply.github.com>
+Date:   Mon Dec 2 21:28:05 2024 -0300
+
+    Merge pull request #32 from microMatic00/DeployEnVercel
+    
+    config para vercel
+
+[33mcommit 4dc03ca6db8f671efc93335f19fd0126772f30d6[m[33m ([m[1;31morigin/DeployEnVercel[m[33m, [m[1;32mDeployEnVercel[m[33m)[m
+Author: NicoDeca <85821406+NicoDeca@users.noreply.github.com>
+Date:   Mon Dec 2 21:25:46 2024 -0300
+
+    config para vercel
+
+[33mcommit fd1c6c6d1cf1a9f375a0b2dcb2e51df27008aa97[m[33m ([m[1;32mloaders[m[33m)[m
+Merge: 9427d12 b31d29e
+Author: Justo Becerra <justj.becerra@gmail.com>
+Date:   Wed Nov 20 13:27:50 2024 -0300
+
+    Merge pull request #31 from microMatic00/fix/home-title-and-browser-bugs
+    
+    alter home text
+
+[33mcommit b31d29e090ac7f10e5a52527e96925aca429a578[m[33m ([m[1;31morigin/fix/home-title-and-browser-bugs[m[33m)[m
+Author: JustBecerra <justj.becerra@gmail.com>
+Date:   Wed Nov 20 12:58:00 2024 -0300
+
+    alter home text
+
+[33mcommit 9427d12831f3424115d3ccf6cd449c5983c6d512[m
+Merge: f14db8a a754118
+Author: Justo Becerra <justj.becerra@gmail.com>
+Date:   Fri Nov 15 16:33:12 2024 -0300
+
+    Merge pull request #30 from microMatic00/feat/add-edit-airship-images
+    
+    Feat/add edit airship images
+
+[33mcommit a754118f401cb5ee4a04a01ddb44351d4c4b7ff8[m[33m ([m[1;31morigin/feat/add-edit-airship-images[m[33m)[m
+Author: JustBecerra <justj.becerra@gmail.com>
+Date:   Fri Nov 15 16:29:59 2024 -0300
+
+    solve edits
+
+[33mcommit 731558c0188a71d2196678e7c5838cdc4719ad36[m
+Author: JustBecerra <justj.becerra@gmail.com>
+Date:   Thu Nov 14 17:32:29 2024 -0300
+
+    edit airship works awesomelly
+
+[33mcommit 3f6ecd5d44ff1a8ff9886ac44dee3dcb7ec8aa9b[m
+Author: JustBecerra <justj.becerra@gmail.com>
+Date:   Thu Nov 14 15:48:32 2024 -0300
+
+    airship images work
+
+[33mcommit f14db8a04627d1b0a40111946bb9f1d49c33a829[m
+Merge: c13df7b 8a71a5e
+Author: Justo Becerra <justj.becerra@gmail.com>
+Date:   Mon Nov 11 15:45:53 2024 -0300
+
+    Merge pull request #29 from microMatic00/feat/add-dropbox-integration
+    
+    Feat/add dropbox integration
+
+[33mcommit 8a71a5eb1a78b1b2112c4db8d6729fc6ba893d2d[m[33m ([m[1;31morigin/feat/add-dropbox-integration[m[33m)[m
+Author: JustBecerra <justj.becerra@gmail.com>
+Date:   Mon Nov 11 13:25:51 2024 -0300
+
+    add image upload
+
+[33mcommit eb97616d56f039bd9e56c4023c38fe0bde748244[m
+Author: JustBecerra <justj.becerra@gmail.com>
+Date:   Wed Nov 6 14:39:05 2024 -0300
+
+    add dropbox image upload
+
+[33mcommit c13df7b3a1abf1a37b92e41cff1a94015ad2c9aa[m
+Author: JustBecerra <justj.becerra@gmail.com>
+Date:   Mon Nov 4 16:32:04 2024 -0300
+
+    add history verification for server
+
+[33mcommit 7dd4a02e528a1bd95606f6aefda790cabc13ef74[m
+Merge: 5bdfa3b b1b77ff
+Author: Justo Becerra <justj.becerra@gmail.com>
+Date:   Mon Nov 4 16:28:11 2024 -0300
+
+    Merge pull request #28 from microMatic00/fix/table-fixes
+    
+    Fix/table fixes
+
+[33mcommit b1b77ffea550a64e34c0164bfebe58a5f543cd6a[m
+Author: JustBecerra <justj.becerra@gmail.com>
+Date:   Mon Nov 4 16:26:58 2024 -0300
+
+    remove edit from History flights
+
+[33mcommit a6cae3f4ff56b931f0e47fa64fbdbb80dc8cf6cb[m
+Author: JustBecerra <justj.becerra@gmail.com>
+Date:   Mon Nov 4 16:09:57 2024 -0300
+
+    make sure typeid is on edit client modal
+
+[33mcommit a5a830732b51ac449e320f0ee6acfe5a1caf7829[m
+Author: JustBecerra <justj.becerra@gmail.com>
+Date:   Mon Nov 4 16:03:39 2024 -0300
+
+    add typeid frontend save on client add
+
+[33mcommit 5bdfa3b35fe309e488ff9ee5fa711b1f120eebfd[m
+Author: JustBecerra <justj.becerra@gmail.com>
+Date:   Mon Nov 4 13:14:18 2024 -0300
+
+    remove arrows from add flight
+
+[33mcommit 2de5053dcc74c37ebb6656c00831f17c3d70b58c[m
+Merge: 6c275fe 8d09b1d
+Author: Justo Becerra <justj.becerra@gmail.com>
+Date:   Fri Nov 1 14:47:52 2024 -0300
+
+    Merge pull request #27 from microMatic00/feat/add-fields-to-clients
+    
+    fix styles, fix missing field on edit and made sure everything works
+
+[33mcommit 8d09b1d6ed2e7899fce631021caef25083f391ad[m[33m ([m[1;31morigin/feat/add-fields-to-clients[m[33m)[m
+Author: JustBecerra <justj.becerra@gmail.com>
+Date:   Fri Nov 1 14:44:05 2024 -0300
+
+    fix styles, fix missing field on edit and made sure everything works
+
+[33mcommit 6c275febdfb48e565134b643b6e638fdf56bc5f3[m
+Merge: 7a3950f 10ce747
+Author: Justo Becerra <justj.becerra@gmail.com>
+Date:   Thu Oct 31 18:18:53 2024 -0300
+
+    Merge pull request #26 from microMatic00/feat/change-design-to-apple-like
+    
+    Feat/change design to apple like
+
+[33mcommit 10ce747e4a5ef4d85c5c99126c15a0e57edb79ac[m[33m ([m[1;31morigin/feat/change-design-to-apple-like[m[33m)[m
+Author: JustBecerra <justj.becerra@gmail.com>
+Date:   Thu Oct 31 18:18:39 2024 -0300
+
+    add min date for date input
+
+[33mcommit 03d73ecd43e11801bed50f16f2c7f99d2ae447be[m
+Author: JustBecerra <justj.becerra@gmail.com>
+Date:   Thu Oct 31 18:07:50 2024 -0300
+
+    change design of modals
+
+[33mcommit 25091e623b1ce923d09ce2561183bd1913e607ea[m
+Merge: 658d7ba 7a3950f
+Author: JustBecerra <justj.becerra@gmail.com>
+Date:   Thu Oct 31 17:37:52 2024 -0300
+
+    Merge branch 'master' of github.com:microMatic00/TangoJets into feat/change-design-to-apple-like
+
+[33mcommit 7a3950fd4c5aa2ad26af47f4781fd05adfb3fe59[m
+Merge: 53a8bf6 7fc516a
+Author: Justo Becerra <justj.becerra@gmail.com>
+Date:   Thu Oct 31 17:02:53 2024 -0300
+
+    Merge pull request #25 from microMatic00/modalAddFligth
+    
+    se agrego el modal y ahora edit
+
+[33mcommit 658d7ba5fe3d10659179092903107095f53f2815[m
+Author: JustBecerra <justj.becerra@gmail.com>
+Date:   Thu Oct 31 16:48:52 2024 -0300
+
+    fix styles of modals
+
+[33mcommit 38ad3b667278b68986672387948614f29a85f2ce[m
+Merge: 3c9235a 53a8bf6
+Author: JustBecerra <justj.becerra@gmail.com>
+Date:   Thu Oct 31 16:09:29 2024 -0300
+
+    Merge branch 'master' of github.com:microMatic00/TangoJets into feat/change-design-to-apple-like
+
+[33mcommit 7fc516aee7c129dee9615db0eebfea2104ff0144[m[33m ([m[1;31morigin/modalAddFligth[m[33m, [m[1;32mmodalAddFligth[m[33m)[m
+Author: NicoDeca <85821406+NicoDeca@users.noreply.github.com>
+Date:   Wed Oct 30 19:37:22 2024 -0300
+
+    se agrego el modal y ahora edit
+
+[33mcommit 53a8bf6ac21d38e4991da7844cdcbb71ff2968e7[m[33m ([m[1;32mcliNuevo[m[33m)[m
+Merge: d4f1d6b 6678cbb
+Author: Justo Becerra <justj.becerra@gmail.com>
+Date:   Wed Oct 30 17:41:13 2024 -0300
+
+    Merge pull request #24 from microMatic00/fix/edit-client
+    
+    fix edit client
+
+[33mcommit 6678cbbdaeab4905882d9f2ac5e9b84f5a8c5b3a[m[33m ([m[1;31morigin/fix/edit-client[m[33m)[m
+Author: JustBecerra <justj.becerra@gmail.com>
+Date:   Wed Oct 30 17:40:47 2024 -0300
+
+    fix edit client
+
+[33mcommit d4f1d6b4319c09c4ebdf06554b7cd720f526159c[m
+Author: JustBecerra <justj.becerra@gmail.com>
+Date:   Wed Oct 30 17:32:20 2024 -0300
+
+    fix import problems
+
+[33mcommit 84539871b8b66d9b377f13e463e33b27fa17a2c8[m
+Merge: e156b2d 94bcd82
+Author: Justo Becerra <justj.becerra@gmail.com>
+Date:   Wed Oct 30 17:10:39 2024 -0300
+
+    Merge pull request #23 from microMatic00/feat/move-modals
+    
+    move modals to folder
+
+[33mcommit 94bcd8270e96329a9ccbf5b4976666b2212d09f1[m[33m ([m[1;31morigin/feat/move-modals[m[33m)[m
+Author: JustBecerra <justj.becerra@gmail.com>
+Date:   Wed Oct 30 17:09:57 2024 -0300
+
+    move modals to folder
+
+[33mcommit e156b2df441c2eb9913ff1223c50adc6765fca7b[m
+Merge: a2023f8 2c2b3c9
+Author: Justo Becerra <justj.becerra@gmail.com>
+Date:   Wed Oct 30 16:54:42 2024 -0300
+
+    Merge pull request #22 from microMatic00/clientedit
+    
+    Clientedit
+
+[33mcommit 2c2b3c964d1e302a3d0f25c193fa2d20270eac42[m[33m ([m[1;31morigin/clientedit[m[33m, [m[1;32mclientedit[m[33m)[m
+Merge: 6c2fbe3 a2023f8
+Author: NicoDeca <85821406+NicoDeca@users.noreply.github.com>
+Date:   Wed Oct 30 16:53:56 2024 -0300
+
+   
